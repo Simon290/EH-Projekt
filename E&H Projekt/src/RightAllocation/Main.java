@@ -1,6 +1,20 @@
+/*
+ * @author Pascal
+ * @version 2.0
+ */
+
+
 package RightAllocation;
 
+/*
+ * imports
+ */
+
 import Database.DBConnection;
+
+/*
+ *  Just for tests and development
+ */
 
 public class Main {
 
