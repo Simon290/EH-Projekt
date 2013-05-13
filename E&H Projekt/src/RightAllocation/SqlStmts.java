@@ -9,7 +9,7 @@ package RightAllocation;
  *  Generates SQL statements according to some parameter.
  */
 public class SqlStmts {
-
+ // komische Änderung
 	/**
 	 * Generates the SQL statement to get the user information for a specific
 	 * user.
