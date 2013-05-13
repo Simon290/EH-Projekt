@@ -17,7 +17,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		try {
-			System.out.print(DBConnection.sql("SELECT * FROM Users';"));
+			System.out.print(DBConnection.sql("SELECT * FROM Users"));
 		} catch (Exception e) {
 			System.out.println("Connection failed!");
 			e.printStackTrace();
