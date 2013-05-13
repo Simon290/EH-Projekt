@@ -17,7 +17,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		try {
-			System.out.print(DBConnection.sql("SELECT Users.Vorname, Users.Name, Users.Firma, Users.Mail, Main.App_ID FROM Users, Main WHERE User.User_ID = Main.User_ID;"));
+			System.out.print(DBConnection.sql("SELECT Users.Vorname, Users.Name, Users.Firma, Users.Mail, Main.App_ID FROM Users, Main WHERE Users.User_ID = Main.User_ID;"));
 		} catch (Exception e) {
 			System.out.println("Connection failed!");
 			e.printStackTrace();
