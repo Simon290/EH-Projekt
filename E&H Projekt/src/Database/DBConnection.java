@@ -24,47 +24,22 @@ public class DBConnection {
 	/*
 	 * Static attributes needed for the database connection.
 	 */
-	static Connection con;
-	static Statement stmt;
-	static ResultSet rs;
-	static ResultSetMetaData rsmd;
-	static int clmCnt;
+	private static Connection con;
+	private static Statement stmt;
+	private static ResultSet rs;
+	private static ResultSetMetaData rsmd;
+	private static int clmCnt;
 	
-	static String path = System.getProperty("user.dir");
+	private static String path = System.getProperty("user.dir");
 
-	/**
-	 * Main
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-			connect();
-		} catch (Exception e) {
-			System.out.println("Database connection failed!");
-			e.printStackTrace();
-		}
-		try {
-			System.out.print(sql("SELECT User.Vorname, User.Name, User.Firma, User.Mail, Main.App_ID FROM User, Main WHERE User.User_ID = Main.User_ID;"));
-		} catch (Exception e) {
-			System.out.println("Connection failed!");
-			e.printStackTrace();
-		}
-		try {
-			disconnect();
-		} catch (Exception e) {
-			System.out.println("Database disconnection failed!");
-			e.printStackTrace();
-		}
-	}
-
+	
 	/**
 	 * Establish the connection to the database.
 	 * 
 	 * @throws Exception
 	 *             Throws exception if the connection failed.
 	 */
-	static void connect() throws Exception {
+	public static void connect() throws Exception {
 
 		Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 		con = DriverManager
@@ -78,7 +53,7 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the disconnection failed.
 	 */
-	static void disconnect() throws Exception {
+	public static void disconnect() throws Exception {
 		rs.close();
 		stmt.close();
 		con.close();
@@ -93,7 +68,7 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the SQL statement was wrong.
 	 */
-	static String sql(String sqlStmt) throws Exception {
+	public static String sql(String sqlStmt) throws Exception {
 		String result = "";
 		stmt = con.createStatement();
 
