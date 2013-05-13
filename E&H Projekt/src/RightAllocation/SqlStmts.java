@@ -1,6 +1,6 @@
 /*
  * @author Pascal, Simon, Anika
- * @version 2.0
+ * @version 2.03
  */
 
 package RightAllocation;
@@ -8,7 +8,6 @@ package RightAllocation;
 /*
  *  Generates SQL statements according to some parameter.
  */
-
 public class SqlStmts {
 
 	/**
@@ -20,7 +19,6 @@ public class SqlStmts {
 	 * @return Returns a string with the SQL statement to get information about
 	 *         a user by userID.
 	 */
-
 	static String generateGetUserInfoSQLStmt(String userId) {
 		String sql = "SELECT * FROM Users WHERE User_ID =" + userId + ";";
 		return sql;
@@ -34,7 +32,6 @@ public class SqlStmts {
 	 * @return Returns a string with the SQL statement to get information about
 	 *         an application by appID.
 	 */
-
 	static String generateAppInfoSQLStmt(String appId) {
 		String sql = "SELECT * FROM Applications WHERE App_ID =" + appId + ";";
 		return sql;
@@ -50,7 +47,6 @@ public class SqlStmts {
 	 *            The appId of the application.
 	 * @return Returns a string with the SQL statement to get the RoleID.
 	 */
-
 	static String generateGetRoleIdSQLStmt(String userId, String appId) {
 		String sql = "SELECT Role_ID FROM Main WHERE User_ID like '" + userId
 				+ "' AND App_ID like '" + appId + ";";
@@ -58,8 +54,8 @@ public class SqlStmts {
 	}
 
 	/**
-	 * Generates the SQL statement to get the ResourceID of an specific user
-	 * for specific application.
+	 * Generates the SQL statement to get the ResourceID of an specific user for
+	 * specific application.
 	 * 
 	 * @param userId
 	 *            The userID of an specific user.
@@ -67,7 +63,6 @@ public class SqlStmts {
 	 *            The appId of the application.
 	 * @return Returns a string with the SQL statement to get the ResourceID.
 	 */
-
 	static String generateGetResourceIdSQLStmt(String userId, String appId) {
 		String sql = "SELECT Resource_ID FROM Main WHERE User_ID like '"
 				+ userId + "' AND App_ID like '" + appId + ";";
@@ -84,7 +79,6 @@ public class SqlStmts {
 	 *            The roleID from the user.
 	 * @return Returns a string with the SQL statement to get the rights.
 	 */
-
 	static String generateGetRightsSqlStmt(String tableRoles, String roleId) {
 		String sql = "SELECT * FROM " + tableRoles + " WHERE Role_ID = "
 				+ roleId + ";";
@@ -101,11 +95,10 @@ public class SqlStmts {
 	 *            The resourceID from the user.
 	 * @return Returns a string with the SQL statement to get the resources.
 	 */
-
 	static String generateGetResourcesSqlStmt(String tableResources,
 			String resourceId) {
-		String sql = "SELECT * FROM " + tableResources + " WHERE Resource_ID = "
-				+ resourceId + ";";
+		String sql = "SELECT * FROM " + tableResources
+				+ " WHERE Resource_ID = " + resourceId + ";";
 		return sql;
 	}
 

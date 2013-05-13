@@ -1,6 +1,6 @@
 /*
  * @author Pascal
- * @version 2.0
+ * @version 2.03
  */
 
 package Database;
@@ -8,7 +8,6 @@ package Database;
 /*
  * imports
  */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,9 +17,8 @@ import java.sql.Statement;
 /*
  *  Manage the connection to the database. Also interpret the SQL statement.
  */
-
 public class DBConnection {
-	
+
 	/*
 	 * Static attributes needed for the database connection.
 	 */
@@ -29,10 +27,9 @@ public class DBConnection {
 	private static ResultSet rs;
 	private static ResultSetMetaData rsmd;
 	private static int clmCnt;
-	
+
 	private static String path = System.getProperty("user.dir");
 
-	
 	/**
 	 * Establish the connection to the database.
 	 * 
@@ -43,7 +40,8 @@ public class DBConnection {
 
 		Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 		con = DriverManager
-				.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=" + path + "\\Database\\Rechteverwaltung.accdb");
+				.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
+						+ path + "\\Database\\Rechteverwaltung.accdb");
 
 	}
 
