@@ -2,7 +2,6 @@ package DemoApp1;
 
 import javax.swing.JTextArea;
 
-
 public class GuiApp1Code {
 
 	static GuiApp1 gui;

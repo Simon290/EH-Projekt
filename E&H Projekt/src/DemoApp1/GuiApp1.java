@@ -24,7 +24,6 @@ import javax.swing.SwingUtilities;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class GuiApp1 extends javax.swing.JFrame {
-	
 	private JButton bLogin;
 	private JTextField tfUserName;
 	private AbstractAction OnLoginClicked;
