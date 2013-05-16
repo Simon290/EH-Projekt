@@ -16,9 +16,10 @@ public class Cache {
 	 */	
 	private String[] userInfo;
 	private String[] appInfo;
-	private String[] Rights;
-	private String[] Resources;
+	private String[] rights;
+	private String[] resources;
 	private String timeStamp;
+	
 	
 	/*
 	 * Constructor
@@ -47,19 +48,19 @@ public class Cache {
 	}
 
 	public String[] getRights() {
-		return Rights;
+		return rights;
 	}
 
 	public void setRights(String[] rights) {
-		Rights = rights;
+		rights = rights;
 	}
 
 	public String[] getResources() {
-		return Resources;
+		return resources;
 	}
 
 	public void setResources(String[] resources) {
-		Resources = resources;
+		resources = resources;
 	}
 
 	public String getTimeStamp() {
