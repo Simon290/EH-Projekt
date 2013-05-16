@@ -45,6 +45,7 @@ public class DemoFrame2 extends javax.swing.JFrame {
 	
 	private void initGUI() {
 		try {
+			this.setTitle("Application 2");
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				jMenuBar = new JMenuBar();
