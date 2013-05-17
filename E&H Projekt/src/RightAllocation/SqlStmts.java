@@ -10,8 +10,6 @@ package RightAllocation;
  */
 public class SqlStmts {
 	
-	///////
-	
 	
 	/**
 	 * Generates the SQL statement to get userID and appID if the pair exists.
