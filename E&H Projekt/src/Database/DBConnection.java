@@ -25,8 +25,6 @@ public class DBConnection {
 	private static Connection con;
 	private static Statement stmt;
 	private static ResultSet rs;
-	private static ResultSetMetaData rsmd;
-	private static int clmCnt;
 
 	private static String path = System.getProperty("user.dir");
 
@@ -37,12 +35,10 @@ public class DBConnection {
 	 *             Throws exception if the connection failed.
 	 */
 	public static void connect() throws Exception {
-
 		Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 		con = DriverManager
 				.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
 						+ path + "\\Database\\Rechteverwaltung.accdb");
-
 	}
 
 	/**
@@ -66,19 +62,18 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the SQL statement was wrong.
 	 */
-	public static String sql(String sqlStmt) throws Exception {
-		String result = "";
+	public static String[] sql(String sqlStmt) throws Exception {		
 		stmt = con.createStatement();
 
 		rs = stmt.executeQuery(sqlStmt);
-		rsmd = rs.getMetaData();
-		clmCnt = rsmd.getColumnCount();
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int clmCnt = rsmd.getColumnCount();
+		String[] result = new String[clmCnt];
 
 		while (rs.next()) {
 			for (int i = 1; i <= clmCnt; i++) {
-				result = result + rs.getString(i) + "   ";
+				result[i-1] = rs.getString(i);
 			}
-			result = result + "\n";
 		}
 
 		return result;

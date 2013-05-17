@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class GuiApp1 extends javax.swing.JFrame {
-	
+
 	private JButton bLogin;
 	private JTextField tfUserName;
 	private AbstractAction OnLoginClicked;
@@ -35,24 +35,17 @@ public class GuiApp1 extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				GuiApp1 inst = new GuiApp1();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 	
+
 	public GuiApp1() {
 		super();
-		GuiApp1Code guiCode = new GuiApp1Code(this);
+		MainApp1 guiCode = new MainApp1(this);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		try {
+			this.setTitle("Application 1");
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 			this.setFocusableWindowState(false);
@@ -94,7 +87,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		}
 	}
 
-	
+
 	public JButton getbLogin() {
 		return bLogin;
 	}
@@ -110,7 +103,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	public void setTaPermissions(JTextArea taPermissions) {
 		this.taPermissions = taPermissions;
 	}
-	
+
 	public JTextField getTfUserName() {
 		return tfUserName;
 	}
@@ -123,7 +116,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		if(OnLoginClicked == null) {
 			OnLoginClicked = new AbstractAction("Login", null) {
 				public void actionPerformed(ActionEvent evt) {
-					GuiApp1Code.TestMethod();
+					MainApp1.TestMethod();
 				}
 			};
 		}
