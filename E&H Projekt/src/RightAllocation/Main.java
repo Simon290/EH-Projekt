@@ -42,6 +42,7 @@ public class Main {
 		}
 		return b;
 	}
+	
 	static boolean checkUserPassword(String userID, String password){
 		boolean passwordValid = false;
 		String[] result = new String[0];
@@ -65,9 +66,11 @@ public class Main {
 		}	
 		return passwordValid;
 	}
+	
 	static boolean checkUserAppPair(String appID, String userID){
-		boolean b;
-		String[] result = new String[0];
+		boolean userAppPairExists;
+		String[] resultRole = new String[0];
+		String[] resultResource = new String[0];
 		
 		try {
 			DBConnection.connect();
@@ -77,7 +80,14 @@ public class Main {
 		}
 		
 		try {
-			result = DBConnection.sql(SqlStmts.generateCheckExistenceSQLStmt(userID, appID));
+			resultRole = DBConnection.sql(SqlStmts.generateCheckRoleExistenceSQLStmt(userID, appID));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			resultResource = DBConnection.sql(SqlStmts.generateCheckResourceExistenceSQLStmt(userID, appID));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -90,17 +100,17 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		if(result.length == 0){
-			b = false;
+		if(resultRole.length == 0 && resultResource.length == 0){
+			userAppPairExists = false;
 		} else{
-			b = true;
+			userAppPairExists = true;
 		}	
-		return b;
+		return userAppPairExists;
 	}
 
 	
 	/**
-	 * Main
+	 * Nur zum Testen
 	 * 
 	 * @param args
 	 */

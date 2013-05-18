@@ -52,7 +52,7 @@ public class Cache {
 	}
 
 	public void setRights(String[] rights) {
-		rights = rights;
+		this.rights = rights;
 	}
 
 	public String[] getResources() {
@@ -60,7 +60,7 @@ public class Cache {
 	}
 
 	public void setResources(String[] resources) {
-		resources = resources;
+		this.resources = resources;
 	}
 
 	public String getTimeStamp() {
@@ -76,11 +76,7 @@ public class Cache {
 		String[] sqlResultAppInfo = new String[0];
 		String[] sqlResultRigths = new String[0];
 		String[] sqlResultResources = new String[0];
-		
-		String[] tableRoles = new String[0];
-		String[] tableResources = new String[0];
-		String[] roleID = new String[0];
-		String[] resourceID = new String[0];
+	
 		
 		try {
 			DBConnection.connect();
@@ -90,15 +86,11 @@ public class Cache {
 		}
 		
 		try {
-			tableRoles = DBConnection.sql(SqlStmts.generateGetTableRolesSQLStmt(appID));
-			tableResources = DBConnection.sql(SqlStmts.generateGetTableResourcesSQLStmt(appID));
-			roleID = DBConnection.sql(SqlStmts.generateGetRoleIdSQLStmt(appID, userID));
-			resourceID = DBConnection.sql(SqlStmts.generateGetResourceIdSQLStmt(appID, userID));
-			
+			/*			
 			sqlResultUserInfo = DBConnection.sql(SqlStmts.generateGetUserInfoSQLStmt(userID));
 			sqlResultAppInfo = DBConnection.sql(SqlStmts.generateGetAppInfoSQLStmt(appID));
 			sqlResultRigths = DBConnection.sql(SqlStmts.generateGetRightsSQLStmt(tableRoles[0], roleID[0]));
-			sqlResultResources = DBConnection.sql(SqlStmts.generateGetResourcesSQLStmt(tableResources[0], resourceID[0]));
+			sqlResultResources = DBConnection.sql(SqlStmts.generateGetResourcesSQLStmt(tableResources[0], resourceID[0]));*/
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -12,20 +12,19 @@ public class SqlStmts {
 	
 	
 	/**
-	 * Generates the SQL statement to get specific colums from the View table
+	 * Generates the SQL statement to get specific columns from the View table.
 	 * 
 	 * @param userID
 	 *            The userID of an specific user.
 	 * @param appID
 	 *            The appID of the specific application.
 	 * @param parameter
-	 * 			  The colums which should be selected. Sting is comma separated.           
+	 * 			  The columns which should be selected. Sting is comma separated.           
 	 * @return Returns the Statement for reading the View table.
 	 */
 	static String generateSelectFromViewSqlStmt(String appID, String userID, String parameter) {
 		if(parameter == ""){
-			parameter = "*";
-			
+			parameter = "*";			
 		}
 		String sql = "SELECT " + parameter
 				+ " From View"
@@ -35,7 +34,7 @@ public class SqlStmts {
 	}
 	
 	/**
-	 * Generates the SQL statement to get validate the password for a specific user
+	 * Generates the SQL statement to get validate the password for a specific user.
 	 * 
 	 * @param userID
 	 *            The userID of an specific user.
@@ -44,8 +43,8 @@ public class SqlStmts {
 	 * @return Returns the SQL Statement for checking the Password
 	 */
 	static String generateValidatePasswordSqlStmt(String userID, String password) {
-		String sql = "SELECT userID, Password"
-				+ " Users"
+		String sql = "SELECT User_ID, Password"
+				+ " FROM Users"
 				+ " WHERE User_ID LIKE '" + userID + "'"
 				+ " AND Password LIKE '" + password + "';";
 		return sql;
@@ -53,7 +52,7 @@ public class SqlStmts {
 	
 	
 	/**
-	 * Generates the SQL statement to get userID and appID if the pair exists.
+	 * Generates the SQL statement to get userID and appID if the pair exists for a role.
 	 * 
 	 * @param userID
 	 *            The userID of an specific user.
@@ -61,8 +60,23 @@ public class SqlStmts {
 	 *            The appID of the specific application.
 	 * @return Returns a String with the results.
 	 */
-	static String generateCheckExistenceSQLStmt(String appID, String userID) {
-		String sql = "SELECT User_ID, App_ID FROM Main WHERE App_ID LIKE '"
+	static String generateCheckRoleExistenceSQLStmt(String appID, String userID) {
+		String sql = "SELECT User_ID, App_ID FROM UserRoles WHERE App_ID LIKE '"
+				+ appID + "' AND User_ID LIKE '" + userID + "';";
+		return sql;
+	}
+	
+	/**
+	 * Generates the SQL statement to get userID and appID if the pair exists for a resource.
+	 * 
+	 * @param userID
+	 *            The userID of an specific user.
+	 * @param appID
+	 *            The appID of the specific application.
+	 * @return Returns a String with the results.
+	 */
+	static String generateCheckResourceExistenceSQLStmt(String appID, String userID) {
+		String sql = "SELECT User_ID, App_ID FROM UserResources WHERE App_ID LIKE '"
 				+ appID + "' AND User_ID LIKE '" + userID + "';";
 		return sql;
 	}
