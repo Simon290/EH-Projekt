@@ -21,6 +21,15 @@ public class Main {
 	
 	static Map<String, Cache> m = new HashMap<String, Cache>();
 	
+	static boolean checkPassword(String password, String userID, String appID) {
+		boolean passwordValid = false;
+		if(checkUserPassword(userID,password)==true){
+			passwordValid = true;
+			login(appID, userID);
+		}
+		return passwordValid;
+	}
+	
 	static boolean login(String appID, String userID) {
 		boolean b = false;
 		if(checkUserAppPair(appID, userID) == true){
@@ -33,7 +42,29 @@ public class Main {
 		}
 		return b;
 	}
-	
+	static boolean checkUserPassword(String userID, String password){
+		boolean passwordValid = false;
+		String[] result = new String[0];
+		try {
+			DBConnection.connect();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			result = DBConnection.sql(SqlStmts.generateValidatePasswordSqlStmt(userID, password));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		if(result.length == 0){
+			passwordValid = false;
+		} else{
+			passwordValid = true;
+		}	
+		return passwordValid;
+	}
 	static boolean checkUserAppPair(String appID, String userID){
 		boolean b;
 		String[] result = new String[0];
@@ -46,7 +77,7 @@ public class Main {
 		}
 		
 		try {
-			result = DBConnection.sql(SqlStmts.generateCheckExistenceSQLStmt(appID, userID));
+			result = DBConnection.sql(SqlStmts.generateCheckExistenceSQLStmt(userID, appID));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
