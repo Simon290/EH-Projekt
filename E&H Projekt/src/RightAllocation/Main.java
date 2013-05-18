@@ -21,15 +21,6 @@ public class Main {
 	
 	static Map<String, Cache> m = new HashMap<String, Cache>();
 	
-	static boolean checkPassword(String password, String userID, String appID) {
-		boolean passwordValid = false;
-		if(checkUserPassword(userID,password)==true){
-			passwordValid = true;
-			login(appID, userID);
-		}
-		return passwordValid;
-	}
-	
 	static boolean login(String appID, String userID) {
 		boolean b = false;
 		if(checkUserAppPair(appID, userID) == true){
@@ -43,6 +34,15 @@ public class Main {
 		return b;
 	}
 	
+	static boolean checkPassword(String password, String userID, String appID) {
+		boolean passwordValid = false;
+		if(checkUserPassword(userID,password)==true){
+			passwordValid = true;
+			login(appID, userID);
+		}
+		return passwordValid;
+	}
+	
 	static boolean checkUserPassword(String userID, String password){
 		boolean passwordValid = false;
 		String[] result = new String[0];
@@ -53,7 +53,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		try {
-			result = DBConnection.sql(SqlStmts.generateValidatePasswordSqlStmt(userID, password));
+			result = DBConnection.sqlQuery(SqlStmts.generateValidatePasswordSqlStmt(userID, password));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -80,14 +80,14 @@ public class Main {
 		}
 		
 		try {
-			resultRole = DBConnection.sql(SqlStmts.generateCheckRoleExistenceSQLStmt(userID, appID));
+			resultRole = DBConnection.sqlQuery(SqlStmts.generateCheckRoleExistenceSQLStmt(userID, appID));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 		try {
-			resultResource = DBConnection.sql(SqlStmts.generateCheckResourceExistenceSQLStmt(userID, appID));
+			resultResource = DBConnection.sqlQuery(SqlStmts.generateCheckResourceExistenceSQLStmt(userID, appID));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -108,6 +108,9 @@ public class Main {
 		return userAppPairExists;
 	}
 
+	static void createUserAppPairView(String appID, String userID){
+		
+	}
 	
 	/**
 	 * Nur zum Testen
@@ -115,8 +118,18 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+			
+		try {
+			DBConnection.connect();
+			DBConnection.createView("CREATE VIEW userAppPairView AS SELECT * FROM Users WHERE User_ID LIKE 'weisar';");
+			DBConnection.viewDisconnect();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		login("App1", "grupas");
+		
+		//login("App1", "grupas");
 				
 	}
 

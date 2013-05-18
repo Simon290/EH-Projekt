@@ -52,9 +52,20 @@ public class DBConnection {
 		stmt.close();
 		con.close();
 	}
+	
+	/**
+	 * Disconnecting the database after creating a view.
+	 * 
+	 * @throws Exception
+	 *             Throws exception if the disconnection failed.
+	 */
+	public static void viewDisconnect() throws Exception {
+		stmt.close();
+		con.close();
+	}
 
 	/**
-	 * Establish the connection to the database.
+	 * Interprets a SQL statement.
 	 * 
 	 * @param sqlStmt
 	 *            The SQl statement to interpret.
@@ -62,7 +73,7 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the SQL statement was wrong.
 	 */
-	public static String[] sql(String sqlStmt) throws Exception {		
+	public static String[] sqlQuery(String sqlStmt) throws Exception {		
 		stmt = con.createStatement();
 
 		rs = stmt.executeQuery(sqlStmt);
@@ -77,5 +88,23 @@ public class DBConnection {
 		}
 
 		return result;
+	}
+	
+	/**
+	 * Creates a view in the database. Deletes an existing view, if existing.
+	 * 
+	 * @param sqlStmt
+	 *            The SQl statement to create a view.
+	 * @throws Exception
+	 *             Throws exception if the SQL statement was wrong.
+	 */
+	public static void createView(String sqlStmt) throws Exception {
+		stmt = con.createStatement();
+		try{
+			stmt.execute("DROP TABLE userAppPairView;");
+		} catch (Exception e){
+
+		}
+		stmt.execute(sqlStmt);			
 	}
 }
