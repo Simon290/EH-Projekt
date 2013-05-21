@@ -73,20 +73,27 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the SQL statement was wrong.
 	 */
-	public static String[] sqlQuery(String sqlStmt) throws Exception {		
+	public static String[][] sqlQuery(String sqlStmt) throws Exception {		
 		stmt = con.createStatement();
 
 		rs = stmt.executeQuery(sqlStmt);
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int clmCnt = rsmd.getColumnCount();
-		String[] result = new String[clmCnt];
-
-		while (rs.next()) {
-			for (int i = 1; i <= clmCnt; i++) {
-				result[i-1] = rs.getString(i);
-			}
+		int rowCnt = 0;
+		while (rs.next()){
+			rowCnt++;
 		}
-
+		String[][] result = new String[rowCnt][clmCnt];
+		rs = stmt.executeQuery(sqlStmt);
+		
+		int r = 0;
+		while (rs.next()) {			
+			for (int i = 1; i <= clmCnt; i++) {
+				result[r][i-1] = rs.getString(i);
+			}
+			r++;
+		}
+		
 		return result;
 	}
 	
@@ -100,11 +107,6 @@ public class DBConnection {
 	 */
 	public static void createView(String sqlStmt) throws Exception {
 		stmt = con.createStatement();
-		try{
-			stmt.execute("DROP TABLE userAppPairView;");
-		} catch (Exception e){
-
-		}
 		stmt.execute(sqlStmt);			
 	}
 }
