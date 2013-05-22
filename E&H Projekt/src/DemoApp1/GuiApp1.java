@@ -31,6 +31,10 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	private JButton bLogin;
 	private JTextField tfUserName;
+	private JButton bDelete;
+	private JButton bUpdate;
+	private JButton Write;
+	private JButton bRead;
 	static private JTextArea jTextArea2;
 	static private JTextArea jTextArea1;
 	private static JComboBox cbRecources;
@@ -116,6 +120,30 @@ public class GuiApp1 extends javax.swing.JFrame {
 				jTextArea2.setText("Rolle");
 				jTextArea2.setEditable(false);
 				jTextArea2.setBounds(142, 47, 100, 22);
+			}
+			{
+				bRead = new JButton();
+				getContentPane().add(bRead);
+				bRead.setText("Read");
+				bRead.setBounds(12, 217, 63, 23);
+			}
+			{
+				Write = new JButton();
+				getContentPane().add(Write);
+				Write.setText("bWrite");
+				Write.setBounds(80, 217, 63, 23);
+			}
+			{
+				bUpdate = new JButton();
+				getContentPane().add(bUpdate);
+				bUpdate.setText("Update");
+				bUpdate.setBounds(148, 217, 63, 23);
+			}
+			{
+				bDelete = new JButton();
+				getContentPane().add(bDelete);
+				bDelete.setText("Delete");
+				bDelete.setBounds(216, 217, 63, 23);
 			}
 			this.setFocusCycleRoot(false);
 			pack();
