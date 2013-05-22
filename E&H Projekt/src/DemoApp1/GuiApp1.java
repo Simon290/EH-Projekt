@@ -31,7 +31,16 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	private JButton bLogin;
 	private JTextField tfUserName;
+	private JButton bUpdatePage;
 	private JButton bDelete;
+	private JLabel lResources;
+	private JLabel lPassword;
+	private JLabel lLevel;
+	private JLabel lPermission;
+	private JLabel lRolle;
+	private JButton bLogout;
+	private JLabel lUserID;
+	private JSeparator jSeparator2;
 	private JButton bUpdate;
 	private JButton Write;
 	private JButton bRead;
@@ -63,7 +72,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				bLogin = new JButton();
 				getContentPane().add(bLogin);
 				bLogin.setText("Login");
-				bLogin.setBounds(287, 12, 86, 23);
+				bLogin.setBounds(201, 12, 86, 23);
 				// bLogin.setAction(getOnLoginClicked());
 				bLogin.addActionListener(ml);
 			}
@@ -71,13 +80,13 @@ public class GuiApp1 extends javax.swing.JFrame {
 				tfUserName = new JTextField();
 				getContentPane().add(getTfUserName());
 				tfUserName.setText("grupas");
-				tfUserName.setBounds(12, 12, 124, 23);
+				tfUserName.setBounds(12, 30, 82, 23);
 			}
 			{
 				tfUserPassword = new JTextField();
 				getContentPane().add(getTfUserPassword());
 				tfUserPassword.setText("123");
-				tfUserPassword.setBounds(142, 12, 100, 23);
+				tfUserPassword.setBounds(106, 30, 61, 23);
 			}
 			{
 				jSeparator1 = new JSeparator();
@@ -92,7 +101,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				taPermissions = new JTextArea();
 				getContentPane().add(getTaPermissions());
 				taPermissions.setText("Permissions");
-				taPermissions.setBounds(12, 47, 70, 21);
+				taPermissions.setBounds(118, 100, 70, 21);
 				taPermissions.setWrapStyleWord(true);
 				taPermissions.setEditable(false);
 			}
@@ -103,7 +112,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				cbRecources = new JComboBox();
 				getContentPane().add(cbRecources);
 				cbRecources.setModel(cbRecourcesModel);
-				cbRecources.setBounds(12, 80, 124, 23);
+				cbRecources.setBounds(12, 159, 125, 21);
 			}
 			{
 				jTextArea1 = new JTextArea();
@@ -111,7 +120,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				jTextArea1.setWrapStyleWord(true);
 				jTextArea1.setText("Level");
 				jTextArea1.setEditable(false);
-				jTextArea1.setBounds(94, 47, 42, 21);
+				jTextArea1.setBounds(200, 99, 42, 21);
 			}
 			{
 				jTextArea2 = new JTextArea();
@@ -119,31 +128,84 @@ public class GuiApp1 extends javax.swing.JFrame {
 				jTextArea2.setWrapStyleWord(true);
 				jTextArea2.setText("Rolle");
 				jTextArea2.setEditable(false);
-				jTextArea2.setBounds(142, 47, 100, 22);
+				jTextArea2.setBounds(12, 99, 83, 22);
 			}
 			{
 				bRead = new JButton();
 				getContentPane().add(bRead);
 				bRead.setText("Read");
-				bRead.setBounds(12, 217, 63, 23);
+				bRead.setBounds(9, 221, 91, 23);
 			}
 			{
 				Write = new JButton();
 				getContentPane().add(Write);
 				Write.setText("bWrite");
-				Write.setBounds(80, 217, 63, 23);
+				Write.setBounds(101, 221, 91, 23);
 			}
 			{
 				bUpdate = new JButton();
 				getContentPane().add(bUpdate);
 				bUpdate.setText("Update");
-				bUpdate.setBounds(148, 217, 63, 23);
+				bUpdate.setBounds(191, 221, 91, 23);
 			}
 			{
 				bDelete = new JButton();
 				getContentPane().add(bDelete);
 				bDelete.setText("Delete");
-				bDelete.setBounds(216, 217, 63, 23);
+				bDelete.setBounds(282, 221, 91, 23);
+			}
+			{
+				bUpdatePage = new JButton();
+				getContentPane().add(bUpdatePage);
+				bUpdatePage.setText("Update");
+				bUpdatePage.setBounds(201, 40, 86, 23);
+			}
+			{
+				lResources = new JLabel();
+				getContentPane().add(lResources);
+				lResources.setText("Rescources:");
+				lResources.setBounds(12, 137, 70, 16);
+			}
+			{
+				jSeparator2 = new JSeparator();
+				getContentPane().add(jSeparator2);
+				jSeparator2.setBounds(12, 127, 356, 10);
+			}
+			{
+				lUserID = new JLabel();
+				getContentPane().add(lUserID);
+				lUserID.setText("UserID");
+				lUserID.setBounds(12, 8, 34, 16);
+			}
+			{
+				lPassword = new JLabel();
+				getContentPane().add(lPassword);
+				lPassword.setText("Password");
+				lPassword.setBounds(106, 8, 50, 16);
+			}
+			{
+				bLogout = new JButton();
+				getContentPane().add(bLogout);
+				bLogout.setText("Logout");
+				bLogout.setBounds(292, 12, 86, 23);
+			}
+			{
+				lRolle = new JLabel();
+				getContentPane().add(lRolle);
+				lRolle.setText("Sie haben Rolle:");
+				lRolle.setBounds(12, 77, 83, 16);
+			}
+			{
+				lPermission = new JLabel();
+				getContentPane().add(lPermission);
+				lPermission.setText("Permission");
+				lPermission.setBounds(118, 78, 58, 16);
+			}
+			{
+				lLevel = new JLabel();
+				getContentPane().add(lLevel);
+				lLevel.setText("Level:");
+				lLevel.setBounds(201, 78, 33, 16);
 			}
 			this.setFocusCycleRoot(false);
 			pack();
