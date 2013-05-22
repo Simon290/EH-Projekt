@@ -31,10 +31,11 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	private JButton bLogin;
 	private JTextField tfUserName;
+	static private JTextArea jTextArea2;
+	static private JTextArea jTextArea1;
 	private static JComboBox cbRecources;
 	private static JTextArea taPermissions;
 	private JTextField tfUserPassword;
-	private JLabel jLabel1;
 	private JSeparator jSeparator1;
 
 	/**
@@ -77,23 +78,17 @@ public class GuiApp1 extends javax.swing.JFrame {
 			{
 				jSeparator1 = new JSeparator();
 				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(12, 62, 355, 10);
+				jSeparator1.setBounds(12, 69, 355, 10);
 			}
 			{
 				this.tfUserName = tfUserName;
 				getContentPane().add(tfUserName);
 			}
 			{
-				jLabel1 = new JLabel();
-				getContentPane().add(jLabel1);
-				jLabel1.setText("Permissions");
-				jLabel1.setBounds(12, 48, 146, 16);
-			}
-			{
 				taPermissions = new JTextArea();
 				getContentPane().add(getTaPermissions());
-				taPermissions.setText("hier kommen die Permissions rein");
-				taPermissions.setBounds(12, 76, 360, 58);
+				taPermissions.setText("Permissions");
+				taPermissions.setBounds(12, 47, 70, 21);
 				taPermissions.setWrapStyleWord(true);
 				taPermissions.setEditable(false);
 			}
@@ -104,7 +99,23 @@ public class GuiApp1 extends javax.swing.JFrame {
 				cbRecources = new JComboBox();
 				getContentPane().add(cbRecources);
 				cbRecources.setModel(cbRecourcesModel);
-				cbRecources.setBounds(12, 146, 76, 23);
+				cbRecources.setBounds(12, 80, 124, 23);
+			}
+			{
+				jTextArea1 = new JTextArea();
+				getContentPane().add(jTextArea1);
+				jTextArea1.setWrapStyleWord(true);
+				jTextArea1.setText("Level");
+				jTextArea1.setEditable(false);
+				jTextArea1.setBounds(94, 47, 42, 21);
+			}
+			{
+				jTextArea2 = new JTextArea();
+				getContentPane().add(jTextArea2);
+				jTextArea2.setWrapStyleWord(true);
+				jTextArea2.setText("Rolle");
+				jTextArea2.setEditable(false);
+				jTextArea2.setBounds(142, 47, 100, 22);
 			}
 			this.setFocusCycleRoot(false);
 			pack();
