@@ -26,8 +26,8 @@ public class SqlStmts {
 		if(parameter == ""){
 			parameter = "*";			
 		}
-		String sql = "SELECT " + parameter
-					+ " From " + appID + userID + "View"
+		String sql = "SELECT DISTINCT " + parameter
+					+ " From View"
 					+ " WHERE App_ID = " + appID
 					+ " AND User_ID LIKE '" + userID + "';";
 		return sql;
@@ -63,7 +63,7 @@ public class SqlStmts {
 	
 	static String generateCheckRoleExistenceSQLStmt(String appID, String userID) {
 		String sql = "SELECT User_ID, App_ID" 
-					+ " FROM UserRoles" 
+					+ " FROM View" 
 					+ " WHERE App_ID LIKE '" + appID + "'" 
 					+ " AND User_ID LIKE '" + userID + "';";
 		return sql;
@@ -80,11 +80,13 @@ public class SqlStmts {
 	 */
 	static String generateCheckResourceExistenceSQLStmt(String appID, String userID) {
 		String sql = "SELECT User_ID, App_ID" 
-					+ " FROM UserResources" 
+					+ " FROM View" 
 					+ " WHERE App_ID LIKE '"	+ appID + "' AND User_ID LIKE '" + userID + "';";
 		return sql;
 	}
 	
+	
+	// wird nicht benötigt und in der nächsten Version entfernt
 	/**
 	 * Generates the SQL statement to create a view about user and app pair.
 	 * 
@@ -94,7 +96,7 @@ public class SqlStmts {
 	 *            The appID of the specific application.
 	 * @return Returns a String with the SQL statement.
 	 */
-	static String genearteCreateViewSQLStmt(String appID, String userID){
+	/*static String genearteCreateViewSQLStmt(String appID, String userID){
 		String sql = "CREATE VIEW " + appID + userID + "View AS" 
 					+ " SELECT Users.User_ID, Users.Surname, Users.Forename, Users.Company, Users.Mail," 
 					+ " Applications.App_ID, Applications.ApplicationName, Applications.ApplicationVersion, UserResources.Resource_ID, Resources.ResourceName," 
@@ -108,6 +110,7 @@ public class SqlStmts {
 					+ " WHERE (((Users.User_ID)='" + userID + "') AND ((Applications.App_ID)= " + appID + "));";
 		return sql;
 	}
+	*/
 	
 	/**
 	 * Generates the SQL statement to delete a view.

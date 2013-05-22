@@ -21,16 +21,21 @@ public class Main {
 	
 	static Map<String, Cache> m = new HashMap<String, Cache>();
 	
-	static boolean login(String appID,String userID, String password) {
+	public static boolean login(String appID,String userID, String password) {
+		
 		if(checkUserPassword(userID,password)){
 			if(checkUserAppPair(appID, userID)){
-				createUserAppPairView(appID, userID);
+				//createUserAppPairView(appID, userID);
 				loadData(appID, userID);
+				// TODO lade alle Recourcen und Rollen und Permissions in die Cache Klasse 
+				System.out.println("login erfolgreich");
 				return true;
 			} else{
+				System.out.println("keine Rechte für diese Application");
 				return false;
 			}
 		} else{
+			System.out.println("Passwort oder Username falsch");
 			return false;
 		}
 	}
@@ -95,7 +100,7 @@ public class Main {
 				
 		return userAppPairExists;
 	}
-	
+	/*
 	static void createUserAppPairView(String appID, String userID){
 		try {
 			DBConnection.connect();
@@ -105,21 +110,38 @@ public class Main {
 		}
 				
 		try {
-			DBConnection.createView(SqlStmts.genearteCreateViewSQLStmt(appID, userID));
+			// View ist schon da!
+			// DBConnection.createView(SqlStmts.genearteCreateViewSQLStmt(appID, userID));
 		} catch (Exception e) {
 					
 		}
 		
 		try {
-			DBConnection.viewDisconnect();
+			// View bleibt bestehen
+			// DBConnection.viewDisconnect();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
+	*/
+	// gibt Rollen und Permission zurück
+	public static String[] getPermission(String appID, String userID){
+		String[] permissions;
+		permissions = m.get(appID + userID).getPermissions();
+		return permissions;
+	}
 	
-	static void loadData(String appID, String userID) {
+	// gibt die verfügbaren Recoucen zurück
+	public static String[] getRecources(String appID, String userID){
+		String resources[];
+		resources = m.get(appID + userID).getResources();
+		return resources;
+	}
+	
+	// speichert alle Daten in die Cache Klasse
+	public static void loadData(String appID, String userID) {
 		m.put(appID + userID, new Cache());
 		m.get(appID + userID).addData(appID, userID);			
 	}	
@@ -130,6 +152,10 @@ public class Main {
 	 */
 	public static void main(String[] args) {						
 		login("1", "grupas", "123");
+		String[] a = new String[3];
+		a = m.get("1grupas").getAppInfo();
+		System.out.println("Appid: " + a[0] + " Appname: " + a[1] + " ApplicationVersion: " + a[2]);
+		
 				
 	}
 

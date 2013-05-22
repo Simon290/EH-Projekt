@@ -88,7 +88,7 @@ public class Cache {
 	 * 
 	 * @return returns rights.
 	 */
-	public String[] getRights() {
+	public String[] getPermissions() {
 		return permissions;
 	}
 

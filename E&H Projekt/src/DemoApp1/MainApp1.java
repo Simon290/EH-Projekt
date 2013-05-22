@@ -1,6 +1,7 @@
 package DemoApp1;
 
 import javax.swing.JTextArea;
+import RightAllocation.Main;
 
 
 public class MainApp1 {
@@ -16,6 +17,11 @@ public class MainApp1 {
 	{
 		JTextArea taPermissions = gui.getTaPermissions();
 		taPermissions.setText("Hi");
+		/*
+		boolean b;
+		b = Main.login("1", "grupas", "123");
+		*/
+		
 	}
 
 }
