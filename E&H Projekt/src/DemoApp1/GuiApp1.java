@@ -42,7 +42,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	private JLabel lUserID;
 	private JSeparator jSeparator2;
 	private JButton bUpdate;
-	private JButton Write;
+	private JButton bWrite;
 	private JButton bRead;
 	static private JTextArea jTextArea2;
 	static private JTextArea jTextArea1;
@@ -134,13 +134,13 @@ public class GuiApp1 extends javax.swing.JFrame {
 				bRead = new JButton();
 				getContentPane().add(bRead);
 				bRead.setText("Read");
-				bRead.setBounds(9, 221, 91, 23);
+				bRead.setBounds(10, 221, 91, 23);
 			}
 			{
-				Write = new JButton();
-				getContentPane().add(Write);
-				Write.setText("bWrite");
-				Write.setBounds(101, 221, 91, 23);
+				bWrite = new JButton();
+				getContentPane().add(bWrite);
+				bWrite.setText("Write");
+				bWrite.setBounds(101, 221, 91, 23);
 			}
 			{
 				bUpdate = new JButton();
@@ -164,7 +164,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				lResources = new JLabel();
 				getContentPane().add(lResources);
 				lResources.setText("Rescources:");
-				lResources.setBounds(12, 137, 70, 16);
+				lResources.setBounds(12, 137, 125, 16);
 			}
 			{
 				jSeparator2 = new JSeparator();
@@ -175,13 +175,13 @@ public class GuiApp1 extends javax.swing.JFrame {
 				lUserID = new JLabel();
 				getContentPane().add(lUserID);
 				lUserID.setText("UserID");
-				lUserID.setBounds(12, 8, 34, 16);
+				lUserID.setBounds(12, 8, 82, 16);
 			}
 			{
 				lPassword = new JLabel();
 				getContentPane().add(lPassword);
 				lPassword.setText("Password");
-				lPassword.setBounds(106, 8, 50, 16);
+				lPassword.setBounds(106, 8, 61, 16);
 			}
 			{
 				bLogout = new JButton();
@@ -193,19 +193,19 @@ public class GuiApp1 extends javax.swing.JFrame {
 				lRolle = new JLabel();
 				getContentPane().add(lRolle);
 				lRolle.setText("Sie haben Rolle:");
-				lRolle.setBounds(12, 77, 83, 16);
+				lRolle.setBounds(12, 77, 100, 16);
 			}
 			{
 				lPermission = new JLabel();
 				getContentPane().add(lPermission);
 				lPermission.setText("Permission");
-				lPermission.setBounds(118, 78, 58, 16);
+				lPermission.setBounds(118, 78, 70, 16);
 			}
 			{
 				lLevel = new JLabel();
 				getContentPane().add(lLevel);
 				lLevel.setText("Level:");
-				lLevel.setBounds(201, 78, 33, 16);
+				lLevel.setBounds(201, 78, 34, 16);
 			}
 			this.setFocusCycleRoot(false);
 			pack();
