@@ -145,18 +145,6 @@ public class Main {
 		m.put(appID + userID, new Cache());
 		m.get(appID + userID).addData(appID, userID);			
 	}	
-	/**
-	 * Nur zum Testen
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {						
-		login("1", "grupas", "123");
-		String[] a = new String[3];
-		a = m.get("1grupas").getAppInfo();
-		System.out.println("Appid: " + a[0] + " Appname: " + a[1] + " ApplicationVersion: " + a[2]);
-		
-				
-	}
+	
 
 }

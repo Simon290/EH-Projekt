@@ -1,21 +1,17 @@
 package DemoApp1;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractAction;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
-
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -31,8 +27,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	private JButton bLogin;
 	private JTextField tfUserName;
-	private JButton bUpdatePage;
-	private JButton bDelete;
+	private static JButton bDelete;
 	private JLabel lResources;
 	private JLabel lPassword;
 	private JLabel lLevel;
@@ -41,15 +36,18 @@ public class GuiApp1 extends javax.swing.JFrame {
 	private JButton bLogout;
 	private JLabel lUserID;
 	private JSeparator jSeparator2;
-	private JButton bUpdate;
-	private JButton bWrite;
-	private JButton bRead;
-	static private JTextArea jTextArea2;
-	static private JTextArea jTextArea1;
-	private static JComboBox cbRecources;
-	private static JTextArea taPermissions;
+	private static JButton bUpdate;
+	private static JButton bWrite;
+	private static JButton bRead;
+	static private JTextField tfRole;
+	static private JTextField tfLevel;
+	private static JComboBox<String> cbRecources;
+	private static JTextField tfPermissions;
 	private JTextField tfUserPassword;
 	private JSeparator jSeparator1;
+
+	static String appID = "1";
+	MyListener ml = new MyListener();
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -57,22 +55,22 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	public GuiApp1() {
 		super();
-		//MainApp1 guiCode = new MainApp1(this);
+		// MainApp1 guiCode = new MainApp1(this);
 		initGUI();
 	}
 
 	private void initGUI() {
 		try {
 			this.setTitle("Application 1");
+			this.setResizable(false);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 			this.setFocusableWindowState(true);
 			{
-				MyListener ml = new MyListener();
 				bLogin = new JButton();
 				getContentPane().add(bLogin);
 				bLogin.setText("Login");
-				bLogin.setBounds(201, 12, 86, 23);
+				bLogin.setBounds(242, 12, 100, 23);
 				// bLogin.setAction(getOnLoginClicked());
 				bLogin.addActionListener(ml);
 			}
@@ -83,10 +81,11 @@ public class GuiApp1 extends javax.swing.JFrame {
 				tfUserName.setBounds(12, 30, 82, 23);
 			}
 			{
-				tfUserPassword = new JTextField();
+				tfUserPassword = new JPasswordField();
 				getContentPane().add(getTfUserPassword());
 				tfUserPassword.setText("123");
-				tfUserPassword.setBounds(106, 30, 61, 23);
+				tfUserPassword.setBounds(124, 30, 100, 23);
+				tfUserPassword.addActionListener(ml);
 			}
 			{
 				jSeparator1 = new JSeparator();
@@ -96,69 +95,67 @@ public class GuiApp1 extends javax.swing.JFrame {
 			{
 				this.tfUserName = tfUserName;
 				getContentPane().add(tfUserName);
+				tfUserName.setSize(100, 23);
 			}
 			{
-				taPermissions = new JTextArea();
-				getContentPane().add(getTaPermissions());
-				taPermissions.setText("Permissions");
-				taPermissions.setBounds(118, 100, 70, 21);
-				taPermissions.setWrapStyleWord(true);
-				taPermissions.setEditable(false);
+				tfPermissions = new JTextField();
+				getContentPane().add(getTfPermissions());
+				tfPermissions.setText("Permissions");
+				tfPermissions.setBounds(124, 100, 100, 21);
+				tfPermissions.setEditable(false);
 			}
 			{
-				ComboBoxModel cbRecourcesModel = 
-						new DefaultComboBoxModel(
-								new String[] { "Item One", "Item Two" });
-				cbRecources = new JComboBox();
+				ComboBoxModel<String> cbRecourcesModel = new DefaultComboBoxModel<String>(
+						new String[] {});
+				cbRecourcesModel.setSelectedItem("");
+				cbRecources = new JComboBox<String>();
 				getContentPane().add(cbRecources);
 				cbRecources.setModel(cbRecourcesModel);
 				cbRecources.setBounds(12, 159, 125, 21);
 			}
 			{
-				jTextArea1 = new JTextArea();
-				getContentPane().add(jTextArea1);
-				jTextArea1.setWrapStyleWord(true);
-				jTextArea1.setText("Level");
-				jTextArea1.setEditable(false);
-				jTextArea1.setBounds(200, 99, 42, 21);
+				tfLevel = new JTextField();
+				getContentPane().add(tfLevel);
+				tfLevel.setText("Level");
+				tfLevel.setEditable(false);
+				tfLevel.setBounds(236, 100, 42, 21);
+				tfLevel.setSize(100, 21);
 			}
 			{
-				jTextArea2 = new JTextArea();
-				getContentPane().add(jTextArea2);
-				jTextArea2.setWrapStyleWord(true);
-				jTextArea2.setText("Rolle");
-				jTextArea2.setEditable(false);
-				jTextArea2.setBounds(12, 99, 83, 22);
+				tfRole = new JTextField();
+				getContentPane().add(tfRole);
+				tfRole.setText("Rolle");
+				tfRole.setEditable(false);
+				tfRole.setBounds(12, 99, 89, 22);
+				tfRole.setSize(100, 22);
 			}
 			{
 				bRead = new JButton();
 				getContentPane().add(bRead);
 				bRead.setText("Read");
-				bRead.setBounds(10, 221, 91, 23);
+				bRead.setBounds(149, 158, 100, 23);
+				bRead.setEnabled(false);
 			}
 			{
 				bWrite = new JButton();
 				getContentPane().add(bWrite);
 				bWrite.setText("Write");
-				bWrite.setBounds(101, 221, 91, 23);
+				bWrite.setBounds(149, 187, 100, 23);
+				bWrite.setEnabled(false);
 			}
 			{
 				bUpdate = new JButton();
 				getContentPane().add(bUpdate);
 				bUpdate.setText("Update");
-				bUpdate.setBounds(191, 221, 91, 23);
+				bUpdate.setBounds(260, 158, 100, 23);
+				bUpdate.setEnabled(false);
 			}
 			{
 				bDelete = new JButton();
 				getContentPane().add(bDelete);
 				bDelete.setText("Delete");
-				bDelete.setBounds(282, 221, 91, 23);
-			}
-			{
-				bUpdatePage = new JButton();
-				getContentPane().add(bUpdatePage);
-				bUpdatePage.setText("Update");
-				bUpdatePage.setBounds(201, 40, 86, 23);
+				bDelete.setBounds(260, 187, 100, 23);
+				bDelete.setEnabled(false);
 			}
 			{
 				lResources = new JLabel();
@@ -175,19 +172,20 @@ public class GuiApp1 extends javax.swing.JFrame {
 				lUserID = new JLabel();
 				getContentPane().add(lUserID);
 				lUserID.setText("UserID");
-				lUserID.setBounds(12, 8, 82, 16);
+				lUserID.setBounds(12, 8, 100, 16);
 			}
 			{
 				lPassword = new JLabel();
 				getContentPane().add(lPassword);
 				lPassword.setText("Password");
-				lPassword.setBounds(106, 8, 61, 16);
+				lPassword.setBounds(124, 8, 100, 16);
 			}
 			{
 				bLogout = new JButton();
 				getContentPane().add(bLogout);
 				bLogout.setText("Logout");
-				bLogout.setBounds(292, 12, 86, 23);
+				bLogout.setBounds(242, 40, 86, 23);
+				bLogout.setSize(100, 23);
 			}
 			{
 				lRolle = new JLabel();
@@ -199,17 +197,17 @@ public class GuiApp1 extends javax.swing.JFrame {
 				lPermission = new JLabel();
 				getContentPane().add(lPermission);
 				lPermission.setText("Permission");
-				lPermission.setBounds(118, 78, 70, 16);
+				lPermission.setBounds(124, 78, 100, 16);
 			}
 			{
 				lLevel = new JLabel();
 				getContentPane().add(lLevel);
 				lLevel.setText("Level:");
-				lLevel.setBounds(201, 78, 34, 16);
+				lLevel.setBounds(236, 78, 100, 16);
 			}
 			this.setFocusCycleRoot(false);
 			pack();
-			setSize(400, 300);
+			this.setSize(384, 261);
 		} catch (Exception e) {
 			// add your error handling code here
 			e.printStackTrace();
@@ -230,27 +228,51 @@ public class GuiApp1 extends javax.swing.JFrame {
 	public JTextField getTfUserName() {
 		return tfUserName;
 	}
+
 	public JTextField getTfUserPassword() {
 		return tfUserPassword;
 	}
-	
-	public static JTextArea getTaPermissions() {
-		return taPermissions;
+
+	public static JTextField getTfPermissions() {
+		return tfPermissions;
+	}
+
+	public static JComboBox<String> getCbResources() {
+		return cbRecources;
 	}
 	
-	public static JComboBox getCbResources() {
-		return cbRecources;
+	public static JButton getbRead() {
+		return bRead;
+	}
+	
+	public static JButton getbWrite() {
+		return bWrite;
+	}
+	
+	public static JButton getbUpdate() {
+		return bUpdate;
+	}
+	
+	public static JButton getbDelete() {
+		return bDelete;
+	}
+	
+	public static JTextField getTfLevel() {
+		return tfLevel;
 	}
 
 	class MyListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// Login Button gedrückt
-			if (e.getSource() == bLogin) {
-				String userName  = tfUserName.getText();
+			if (e.getSource() == bLogin || e.getSource() == tfUserPassword) {
+				String userName = tfUserName.getText();
 				String password = tfUserPassword.getText();
-				GuiApp1Code.Login(userName,password);
+				GuiApp1Code.Login(appID, userName, password);
 			}
+			
 		}
 	}
+
+	
 
 }
