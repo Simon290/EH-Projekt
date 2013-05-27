@@ -14,19 +14,20 @@ public class GuiApp1Code {
 		this.gui = gui;
 	}
 
-	public static void Login(String appID, String userName, String password) {
-		System.out.println("Login wird ausgeführt");
+	public static void Login(String appID, String userID, String password) {
 
 		boolean b;
-		b = Main.login(appID, userName, password);
+		b = Main.login(appID, userID, password);
 		if (b) {
-			setPermissions(appID, userName);
-			setResources(appID, userName);
+			setRole(appID, userID);
+			setPermissions(appID, userID);
+			setResources(appID, userID);
 			JOptionPane.showMessageDialog(null, "Login war erfolgreich");
+			GuiApp1.getbLogin().setEnabled(false);
+			GuiApp1.getbLogout().setEnabled(true);
 		} else {
 			JOptionPane.showMessageDialog(null, "Login fehlgeschlagen");
 		}
-
 	}
 
 	public static void setResources(String appID, String userID) {
@@ -55,6 +56,11 @@ public class GuiApp1Code {
 		setButtons(permissions[0]);
 	}
 
+	public static void setRole(String appID, String userID) {
+		String role = Main.getRole(appID, userID);
+		GuiApp1.getTfRole().setText(role);
+	}
+
 	private static void setButtons(String permission) {
 		switch (permission) {
 		case "Read":
@@ -75,6 +81,16 @@ public class GuiApp1Code {
 			GuiApp1.getbUpdate().setEnabled(true);
 			GuiApp1.getbDelete().setEnabled(true);
 			break;
+		default:
+			GuiApp1.getbRead().setEnabled(false);
+			GuiApp1.getbWrite().setEnabled(false);
+			GuiApp1.getbUpdate().setEnabled(false);
+			GuiApp1.getbDelete().setEnabled(false);
 		}
+	}
+
+	public static void Logout(String appID, String userID) {
+		Main.deleteData(appID, userID);
+		GuiApp1.setDefault();
 	}
 }

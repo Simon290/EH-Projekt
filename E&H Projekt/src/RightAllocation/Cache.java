@@ -16,6 +16,7 @@ public class Cache {
 	 */	
 	private String[] userInfo;
 	private String[] appInfo;
+	private String role;
 	private String[] permissions;
 	private String[] resources;
 	private String timeStamp;
@@ -152,6 +153,24 @@ public class Cache {
 	}
 	
 	/**
+	 * Returns a strings with the role of the object, set by creating the object.
+	 * 
+	 * @return returns role.
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * Sets the role.
+	 * 
+	 * @param role
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	/**
 	 * Loads the data for the user app pair from the database into the cache-object of the user app pair.
 	 * 
 	 * @param appID	The appID from a specific application.
@@ -162,6 +181,7 @@ public class Cache {
 		String[][] sqlResultAppInfo = new String[0][0];
 		String[][] sqlResultPermissions = new String[0][0];
 		String[][] sqlResultResources = new String[0][0];
+		String[][] sqlResultRole = new String[0][0];
 	
 		
 		try {
@@ -176,6 +196,7 @@ public class Cache {
 			sqlResultAppInfo = DBConnection.sqlQuery(SqlStmts.generateSelectFromViewSqlStmt(appID, userID, "App_ID, ApplicationName, ApplicationVersion"));
 			sqlResultPermissions = DBConnection.sqlQuery(SqlStmts.generateSelectFromViewSqlStmt(appID, userID, "PermissionName, PermissionLevel"));
 			sqlResultResources = DBConnection.sqlQuery(SqlStmts.generateSelectFromViewSqlStmt(appID, userID, "ResourceName"));
+			sqlResultRole = DBConnection.sqlQuery(SqlStmts.generateSelectFromViewSqlStmt(appID, userID, "RoleName"));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -191,7 +212,8 @@ public class Cache {
 		setUserInfo(sqlResultUserInfo);
 		setAppInfo(sqlResultAppInfo);
 		setPermissions(sqlResultPermissions);
-		setResources(sqlResultResources);		
+		setResources(sqlResultResources);	
+		setRole(sqlResultRole[0][0]);
 	}
 
 	/**
@@ -203,6 +225,7 @@ public class Cache {
 	    DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"); 
 	    formatter.setTimeZone(TimeZone.getTimeZone("GMT+2:00"));
 	    return formatter.format(new Date());
-	}	
+	}
+
 
 }

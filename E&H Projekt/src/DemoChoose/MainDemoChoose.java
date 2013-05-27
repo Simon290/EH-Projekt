@@ -2,6 +2,8 @@ package DemoChoose;
 
 import javax.swing.SwingUtilities;
 
+import Test.GuiTest;
+
 import DemoApp1.GuiApp1;
 import DemoApp2.DemoFrame2;
 
@@ -14,6 +16,14 @@ public class MainDemoChoose {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				GuiDemoChoose inst = new GuiDemoChoose();
+				inst.setLocationRelativeTo(null);
+				inst.setVisible(true);
+			}
+		});
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				GuiTest inst = new GuiTest();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}

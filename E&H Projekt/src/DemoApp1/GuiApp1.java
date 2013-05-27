@@ -25,15 +25,15 @@ import javax.swing.WindowConstants;
  */
 public class GuiApp1 extends javax.swing.JFrame {
 
-	private JButton bLogin;
-	private JTextField tfUserName;
+	private static JButton bLogin;
+	private static JTextField tfUserName;
 	private static JButton bDelete;
 	private JLabel lResources;
 	private JLabel lPassword;
 	private JLabel lLevel;
 	private JLabel lPermission;
 	private JLabel lRolle;
-	private JButton bLogout;
+	private static JButton bLogout;
 	private JLabel lUserID;
 	private JSeparator jSeparator2;
 	private static JButton bUpdate;
@@ -43,7 +43,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	static private JTextField tfLevel;
 	private static JComboBox<String> cbRecources;
 	private static JTextField tfPermissions;
-	private JTextField tfUserPassword;
+	private static JTextField tfUserPassword;
 	private JSeparator jSeparator1;
 
 	static String appID = "1";
@@ -71,19 +71,16 @@ public class GuiApp1 extends javax.swing.JFrame {
 				getContentPane().add(bLogin);
 				bLogin.setText("Login");
 				bLogin.setBounds(242, 12, 100, 23);
-				// bLogin.setAction(getOnLoginClicked());
 				bLogin.addActionListener(ml);
 			}
 			{
 				tfUserName = new JTextField();
 				getContentPane().add(getTfUserName());
-				tfUserName.setText("grupas");
 				tfUserName.setBounds(12, 30, 82, 23);
 			}
 			{
 				tfUserPassword = new JPasswordField();
 				getContentPane().add(getTfUserPassword());
-				tfUserPassword.setText("123");
 				tfUserPassword.setBounds(124, 30, 100, 23);
 				tfUserPassword.addActionListener(ml);
 			}
@@ -186,11 +183,13 @@ public class GuiApp1 extends javax.swing.JFrame {
 				bLogout.setText("Logout");
 				bLogout.setBounds(242, 40, 86, 23);
 				bLogout.setSize(100, 23);
+				bLogout.setEnabled(false);
+				bLogout.addActionListener(ml);
 			}
 			{
 				lRolle = new JLabel();
 				getContentPane().add(lRolle);
-				lRolle.setText("Sie haben Rolle:");
+				lRolle.setText("Rolle:");
 				lRolle.setBounds(12, 77, 100, 16);
 			}
 			{
@@ -214,7 +213,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		}
 	}
 
-	public JButton getbLogin() {
+	public static JButton getbLogin() {
 		return bLogin;
 	}
 
@@ -237,28 +236,52 @@ public class GuiApp1 extends javax.swing.JFrame {
 		return tfPermissions;
 	}
 
+	public static JTextField getTfRole() {
+		return tfRole;
+	}
+
 	public static JComboBox<String> getCbResources() {
 		return cbRecources;
 	}
-	
+
 	public static JButton getbRead() {
 		return bRead;
 	}
-	
+
 	public static JButton getbWrite() {
 		return bWrite;
 	}
-	
+
 	public static JButton getbUpdate() {
 		return bUpdate;
 	}
-	
+
 	public static JButton getbDelete() {
 		return bDelete;
 	}
 	
+	
+	public static JButton getbLogout() {
+		return bLogout;
+	}
+
 	public static JTextField getTfLevel() {
 		return tfLevel;
+	}
+	
+	public static void setDefault(){
+		bRead.setEnabled(false);
+		bWrite.setEnabled(false);
+		bUpdate.setEnabled(false);
+		bDelete.setEnabled(false);
+		tfPermissions.setText("Permissions");
+		tfRole.setText("Permissions");
+		tfLevel.setText("Level");
+		tfUserName.setText("");
+		tfUserPassword.setText("");
+		bLogin.setEnabled(true);
+		bLogout.setEnabled(false);
+		cbRecources.removeAllItems();	
 	}
 
 	class MyListener implements ActionListener {
@@ -269,10 +292,14 @@ public class GuiApp1 extends javax.swing.JFrame {
 				String password = tfUserPassword.getText();
 				GuiApp1Code.Login(appID, userName, password);
 			}
-			
+
+			// Logout Button gedrückt
+			if (e.getSource() == bLogout) {
+				String userName = tfUserName.getText();
+				GuiApp1Code.Logout(appID, userName);
+			}
+
 		}
 	}
-
-	
 
 }
