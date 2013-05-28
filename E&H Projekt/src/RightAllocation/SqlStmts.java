@@ -59,12 +59,11 @@ public class SqlStmts {
 	 * @param appID
 	 *            The appID of the specific application.
 	 * @return Returns a String with the SQL statement.
-	 */
-	
+	 */	
 	static String generateCheckRoleExistenceSQLStmt(String appID, String userID) {
-		String sql = "SELECT User_ID, App_ID" 
-					+ " FROM View" 
-					+ " WHERE App_ID LIKE '" + appID + "'" 
+		String sql = "SELECT UserRoles.User_ID, Roles.App_ID" 
+					+ " FROM Roles INNER JOIN UserRoles ON Roles.Role_ID = UserRoles.Role_ID" 
+					+ " WHERE Roles.App_ID LIKE '" + appID + "'" 
 					+ " AND User_ID LIKE '" + userID + "';";
 		return sql;
 	}
@@ -80,7 +79,7 @@ public class SqlStmts {
 	 */
 	static String generateCheckResourceExistenceSQLStmt(String appID, String userID) {
 		String sql = "SELECT User_ID, App_ID" 
-					+ " FROM View" 
+					+ " FROM UserResources" 
 					+ " WHERE App_ID LIKE '"	+ appID + "' AND User_ID LIKE '" + userID + "';";
 		return sql;
 	}

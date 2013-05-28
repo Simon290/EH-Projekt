@@ -16,15 +16,22 @@ public class GuiApp1Code {
 
 	public static void Login(String appID, String userID, String password) {
 
-		boolean b;
-		b = Main.login(appID, userID, password);
-		if (b) {
-			setRole(appID, userID);
-			setPermissions(appID, userID);
-			setResources(appID, userID);
-			JOptionPane.showMessageDialog(null, "Login war erfolgreich");
-			GuiApp1.getbLogin().setEnabled(false);
-			GuiApp1.getbLogout().setEnabled(true);
+		if (Main.checkPassword(appID, userID, password)) {
+			System.out.println("Login erfolgreich");
+			if(Main.hasRole(appID, userID)){				
+				System.out.println("Role vorhanden");
+				if(Main.hasResources(appID, userID)){
+					System.out.println("Ressourcen vorhanden");
+					Main.loadData(appID, userID);
+					setRole(appID, userID);
+					setPermissions(appID, userID);
+					setResources(appID, userID);
+					JOptionPane.showMessageDialog(null, "Login war erfolgreich");
+					GuiApp1.getbLogin().setEnabled(false);
+					GuiApp1.getbLogout().setEnabled(true);
+				}
+			}
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "Login fehlgeschlagen");
 		}

@@ -47,7 +47,6 @@ public class GuiApp1 extends javax.swing.JFrame {
 	private JSeparator jSeparator1;
 
 	static String appID = "1";
-	MyListener ml = new MyListener();
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -55,7 +54,6 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	public GuiApp1() {
 		super();
-		// MainApp1 guiCode = new MainApp1(this);
 		initGUI();
 	}
 
@@ -71,7 +69,11 @@ public class GuiApp1 extends javax.swing.JFrame {
 				getContentPane().add(bLogin);
 				bLogin.setText("Login");
 				bLogin.setBounds(242, 12, 100, 23);
-				bLogin.addActionListener(ml);
+				bLogin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						Actions.btnLogin();
+					}
+				});
 			}
 			{
 				tfUserName = new JTextField();
@@ -82,7 +84,11 @@ public class GuiApp1 extends javax.swing.JFrame {
 				tfUserPassword = new JPasswordField();
 				getContentPane().add(getTfUserPassword());
 				tfUserPassword.setBounds(124, 30, 100, 23);
-				tfUserPassword.addActionListener(ml);
+				tfUserPassword.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						Actions.btnLogin();
+					}
+				});
 			}
 			{
 				jSeparator1 = new JSeparator();
@@ -184,7 +190,11 @@ public class GuiApp1 extends javax.swing.JFrame {
 				bLogout.setBounds(242, 40, 86, 23);
 				bLogout.setSize(100, 23);
 				bLogout.setEnabled(false);
-				bLogout.addActionListener(ml);
+				bLogout.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						Actions.btnLogout();
+					}
+				});
 			}
 			{
 				lRolle = new JLabel();
@@ -259,8 +269,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	public static JButton getbDelete() {
 		return bDelete;
 	}
-	
-	
+
 	public static JButton getbLogout() {
 		return bLogout;
 	}
@@ -268,8 +277,8 @@ public class GuiApp1 extends javax.swing.JFrame {
 	public static JTextField getTfLevel() {
 		return tfLevel;
 	}
-	
-	public static void setDefault(){
+
+	public static void setDefault() {
 		bRead.setEnabled(false);
 		bWrite.setEnabled(false);
 		bUpdate.setEnabled(false);
@@ -281,24 +290,21 @@ public class GuiApp1 extends javax.swing.JFrame {
 		tfUserPassword.setText("");
 		bLogin.setEnabled(true);
 		bLogout.setEnabled(false);
-		cbRecources.removeAllItems();	
+		cbRecources.removeAllItems();
 	}
 
-	class MyListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+	static class Actions {
+		public static void btnLogin() {
 			// Login Button gedrückt
-			if (e.getSource() == bLogin || e.getSource() == tfUserPassword) {
-				String userName = tfUserName.getText();
-				String password = tfUserPassword.getText();
-				GuiApp1Code.Login(appID, userName, password);
-			}
+			String userName = tfUserName.getText();
+			String password = tfUserPassword.getText();
+			GuiApp1Code.Login(appID, userName, password);
+		}
 
+		public static void btnLogout() {
 			// Logout Button gedrückt
-			if (e.getSource() == bLogout) {
-				String userName = tfUserName.getText();
-				GuiApp1Code.Logout(appID, userName);
-			}
-
+			String userName = tfUserName.getText();
+			GuiApp1Code.Logout(appID, userName);
 		}
 	}
 

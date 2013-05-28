@@ -20,19 +20,30 @@ public class Main {
 
 	static Map<String, Cache> m = new HashMap<String, Cache>();
 
-	public static boolean login(String appID, String userID, String password) {
-
+	public static boolean checkPassword(String appID, String userID,
+			String password) {
 		if (checkUserPassword(userID, password)) {
-			if (checkUserAppPair(appID, userID)) {
-				loadData(appID, userID);
-				System.out.println("login erfolgreich");
-				return true;
-			} else {
-				System.out.println("keine Rechte für diese Application");
-				return false;
-			}
+			return true;
 		} else {
 			System.out.println("Passwort oder Username falsch");
+			return false;
+		}
+	}
+
+	public static boolean hasRole(String appID, String userID) {
+		if (checkUserRoleAppPair(appID, userID)) {			
+			return true;
+		} else {
+			System.out.println("keine Role für diese Application");
+			return false;
+		}
+	}
+
+	public static boolean hasResources(String appID, String userID) {
+		if (checkUserResourceAppPair(appID, userID)) {			
+			return true;
+		} else {
+			System.out.println("keine Ressourcen für diese Application");
 			return false;
 		}
 	}
@@ -62,10 +73,8 @@ public class Main {
 		return passwordValid;
 	}
 
-	static boolean checkUserAppPair(String appID, String userID) {
-		boolean userAppPairExists;
+	static boolean checkUserRoleAppPair(String appID, String userID) {
 		String[][] resultRole;
-		String[][] resultResource;
 
 		try {
 			DBConnection.connect();
@@ -77,10 +86,42 @@ public class Main {
 		try {
 			resultRole = DBConnection.sqlQuery(SqlStmts
 					.generateCheckRoleExistenceSQLStmt(appID, userID));
+
+		} catch (Exception e) {
+			resultRole = new String[0][0];
+			e.printStackTrace();
+		}
+
+		try {
+			DBConnection.disconnect();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (resultRole.length == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	static boolean checkUserResourceAppPair(String appID, String userID) {
+		String[][] resultResource;
+
+		try {
+			DBConnection.connect();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+
 			resultResource = DBConnection.sqlQuery(SqlStmts
 					.generateCheckResourceExistenceSQLStmt(appID, userID));
 		} catch (Exception e) {
-			resultRole = new String[0][0];
+
 			resultResource = new String[0][0];
 			e.printStackTrace();
 		}
@@ -92,13 +133,12 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		if (resultRole.length == 0 && resultResource.length == 0) {
-			userAppPairExists = false;
+		if (resultResource.length == 0) {
+			return false;
 		} else {
-			userAppPairExists = true;
+			return true;
 		}
 
-		return userAppPairExists;
 	}
 
 	// gibt Permission zurück
@@ -127,9 +167,10 @@ public class Main {
 		m.put(appID + userID, new Cache());
 		m.get(appID + userID).addData(appID, userID);
 	}
-	
-	// löscht das Cacheobjekt, bzw nur die Referenz und gubt es so für den Garbage-Collector frei.
-	public static void deleteData(String appID, String userID){
+
+	// löscht das Cacheobjekt, bzw nur die Referenz und gubt es so für den
+	// Garbage-Collector frei.
+	public static void deleteData(String appID, String userID) {
 		Cache c = m.get(appID + userID);
 		c = null;
 	}
