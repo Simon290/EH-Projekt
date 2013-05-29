@@ -20,6 +20,17 @@ public class Main {
 
 	static Map<String, Cache> m = new HashMap<String, Cache>();
 
+	/**
+	 * Check the password and the username in the database. sends it to Database
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User
+	 * @param password
+	 *            The password, which should be validated         
+	 * @return returns weather the password was correct or not
+	 */
 	public static boolean checkPassword(String appID, String userID,
 			String password) {
 		if (checkUserPassword(userID, password)) {
@@ -30,6 +41,15 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Check in the database weather the user has Roles for the current Application
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns weather the User has a Role in this Application
+	 */
 	public static boolean hasRole(String appID, String userID) {
 		if (checkUserRoleAppPair(appID, userID)) {
 			return true;
@@ -38,7 +58,16 @@ public class Main {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Check in the database weather the user has Resources for the current Application
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns weather the User has resources in this Application
+	 */
 	public static boolean hasResources(String appID, String userID) {
 		if (checkUserResourceAppPair(appID, userID)) {
 			return true;
@@ -48,6 +77,15 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Check in the database weather the for the current user is correct
+	 * 
+	 * @param userID
+	 *            The ID of the current User  
+	 * @param password
+	 *            The password of the current User      
+	 * @return returns weather the password is correct
+	 */
 	static boolean checkUserPassword(String userID, String password) {
 		boolean passwordValid = false;
 		String[][] result = new String[0][0];
@@ -65,6 +103,15 @@ public class Main {
 		return passwordValid;
 	}
 
+	/**
+	 * Check in the database weather the user has Role for the current Application
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns weather the User has Role in this Application
+	 */
 	static boolean checkUserRoleAppPair(String appID, String userID) {
 		String[][] resultRole;
 
@@ -82,6 +129,15 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Check in the database weather the user has Resources for the current Application
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns weather the User has resources in this Application
+	 */
 	static boolean checkUserResourceAppPair(String appID, String userID) {
 		String[][] resultResource;
 
@@ -100,35 +156,72 @@ public class Main {
 
 	}
 
-	// gibt Permission zurück
+	/**
+	 * Reads the Permissions from Cache
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns the Permissions for current user
+	 */
 	public static String[] getPermission(String appID, String userID) {
 		String[] permissions;
 		permissions = m.get(appID + userID).getPermissions();
 		return permissions;
 	}
 
-	// gibt die verfügbaren Recoucen zurück
+	/**
+	 * Reads the Resources from Cache
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns the Resources for current user
+	 */
 	public static String[] getRecources(String appID, String userID) {
 		String resources[];
 		resources = m.get(appID + userID).getResources();
 		return resources;
 	}
 
-	// gibt die Rolle zurück
+	/**
+	 * Reads the Role from Cache
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 * @return returns the Role for current user
+	 */
 	public static String getRole(String appID, String userID) {
 		String role;
 		role = m.get(appID + userID).getRole();
 		return role;
 	}
 
-	// speichert alle Daten in die Cache Klasse
+	/**
+	 * Saves all available Data for current User and current Application
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 */
 	public static void loadData(String appID, String userID) {
 		m.put(appID + userID, new Cache());
 		m.get(appID + userID).addData(appID, userID);
 	}
 
-	// löscht das Cacheobjekt, bzw nur die Referenz und gubt es so für den
-	// Garbage-Collector frei.
+	/**
+	 * Deletes reference on the Cache Object, so the Garbage Collector will delete it
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 */	
 	public static void deleteData(String appID, String userID) {
 		Cache c = m.get(appID + userID);
 		c = null;
