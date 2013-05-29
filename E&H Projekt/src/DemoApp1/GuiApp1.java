@@ -26,6 +26,7 @@ import javax.swing.WindowConstants;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
+@SuppressWarnings("serial")
 public class GuiApp1 extends javax.swing.JFrame {
 
 	private static JButton bLogin;
@@ -99,11 +100,6 @@ public class GuiApp1 extends javax.swing.JFrame {
 				jSeparator1 = new JSeparator();
 				getContentPane().add(jSeparator1);
 				jSeparator1.setBounds(12, 69, 355, 10);
-			}
-			{
-				this.tfUserName = tfUserName;
-				getContentPane().add(tfUserName);
-				tfUserName.setSize(100, 23);
 			}
 			{
 				tfPermissions = new JTextField();
@@ -237,21 +233,11 @@ public class GuiApp1 extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Sets the Login Attribute to true, if Login is correct
-	 *    
-	 *    @param bLogin 
-	 *      	Button Login
-	 */
-	public void setbLogin(JButton bLogin) {
-		this.bLogin = bLogin;
-	}
-
-	/**
 	 * Get the Username from Textfield
 	 *    
 	 * @return returns Username
 	 */
-	public JTextField getTfUserName() {
+	public static JTextField getTfUserName() {
 		return tfUserName;
 	}
 
@@ -260,7 +246,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	 *    
 	 * @return returns Password
 	 */
-	public JTextField getTfUserPassword() {
+	public static JTextField getTfUserPassword() {
 		return tfUserPassword;
 	}
 
@@ -344,7 +330,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	public static JTextField getTfLevel() {
 		return tfLevel;
 	}
-
+	
 	/**
 	 * Sets all Components in Gui back to the Default Values
 	 */
@@ -361,14 +347,15 @@ public class GuiApp1 extends javax.swing.JFrame {
 		bLogin.setEnabled(true);
 		bLogout.setEnabled(false);
 		cbRecources.removeAllItems();
+		tfUserName.setEditable(true);
+		tfUserPassword.setEditable(true);
 	}
 
-	static class Actions {
+	public static class Actions {
 		/**
 		 * Action listener for Login Button
 		 */
 		public static void btnLogin() {
-			// Login Button gedrückt
 			String userName = tfUserName.getText();
 			String password = tfUserPassword.getText();
 			GuiApp1Code.Login(appID, userName, password);
@@ -378,7 +365,6 @@ public class GuiApp1 extends javax.swing.JFrame {
 		 * Action Listener for Logout Button
 		 */
 		public static void btnLogout() {
-			// Logout Button gedrückt
 			String userName = tfUserName.getText();
 			GuiApp1Code.Logout(appID, userName);
 		}

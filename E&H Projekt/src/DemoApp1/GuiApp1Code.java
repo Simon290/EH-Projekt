@@ -35,6 +35,8 @@ public class GuiApp1Code {
 					JOptionPane.showMessageDialog(null, "Login war erfolgreich");
 					GuiApp1.getbLogin().setEnabled(false);
 					GuiApp1.getbLogout().setEnabled(true);
+					GuiApp1.getTfUserName().setEditable(false);
+					GuiApp1.getTfUserPassword().setEditable(false);
 				}
 			}
 			

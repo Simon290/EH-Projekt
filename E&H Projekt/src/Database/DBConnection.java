@@ -61,9 +61,7 @@ public class DBConnection {
 	public static void disconnect() {
 		try {
 			rs.close();
-
 			stmt.close();
-
 			con.close();
 		} catch (SQLException e) {
 			errorHandling(e, "Fehler bei Verbindungsabbau zur Datenbank!");
@@ -99,11 +97,9 @@ public class DBConnection {
 				}
 				r++;
 			}
-
 		} catch (SQLException e) {
 			errorHandling(e, "Fehler im SQL Statment!");
 		}
-
 		return result;
 	}
 
@@ -127,12 +123,10 @@ public class DBConnection {
 			textBox.setBorder(null);
 			textBox.setEditable(false);
 			textBox.setLineWrap(true);
-			textBox.setAutoscrolls(true);
 			JScrollPane scrollPane = new JScrollPane(textBox);
 			scrollPane.setPreferredSize(new Dimension(600, 200));
 			JOptionPane.showMessageDialog(null, scrollPane, "Fehler-Details",
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
-
 }

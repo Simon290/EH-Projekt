@@ -18,7 +18,7 @@ import Database.DBConnection;
  */
 public class Main {
 
-	static Map<String, Cache> m = new HashMap<String, Cache>();
+	public static Map<String, Cache> m = new HashMap<String, Cache>();
 
 	/**
 	 * Check the password and the username in the database. sends it to Database
@@ -225,6 +225,7 @@ public class Main {
 	public static void deleteData(String appID, String userID) {
 		Cache c = m.get(appID + userID);
 		c = null;
+		//m.remove(appID + userID);
 	}
 
 }

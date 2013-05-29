@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
@@ -18,6 +16,7 @@ import javax.swing.SwingUtilities;
  * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
  * ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
+@SuppressWarnings("serial")
 public class GuiDemoChoose extends javax.swing.JFrame {
 	private JButton jButtonDemo1;
 	private JButton jButtonDemo2;
@@ -31,7 +30,8 @@ public class GuiDemoChoose extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Method initializes the Gui, sets the Buttons and creates the Event Handlers
+	 * Method initializes the Gui, sets the Buttons and creates the Event
+	 * Handlers
 	 */
 	private void initGUI() {
 		try {
