@@ -284,7 +284,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		bUpdate.setEnabled(false);
 		bDelete.setEnabled(false);
 		tfPermissions.setText("Permissions");
-		tfRole.setText("Permissions");
+		tfRole.setText("Rolle");
 		tfLevel.setText("Level");
 		tfUserName.setText("");
 		tfUserPassword.setText("");

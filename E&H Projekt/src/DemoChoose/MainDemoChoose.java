@@ -24,7 +24,6 @@ public class MainDemoChoose {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				GuiTest inst = new GuiTest();
-				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});

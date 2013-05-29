@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
@@ -34,11 +35,21 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the connection failed.
 	 */
-	public static void connect() throws Exception {
-		Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-		con = DriverManager
-				.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
-						+ path + "\\Database\\Rechteverwaltung.accdb");
+	public static void connect() {
+		try {
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			con = DriverManager
+					.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
+							+ path + "\\Database\\Rechteverwaltung.accdb");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -47,21 +58,17 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the disconnection failed.
 	 */
-	public static void disconnect() throws Exception {
-		rs.close();
-		stmt.close();
-		con.close();
-	}
-	
-	/**
-	 * Disconnecting the database after creating a view.
-	 * 
-	 * @throws Exception
-	 *             Throws exception if the disconnection failed.
-	 */
-	public static void viewDisconnect() throws Exception {
-		stmt.close();
-		con.close();
+	public static void disconnect() {
+		try {
+			rs.close();
+		
+			stmt.close();
+		
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -73,40 +80,35 @@ public class DBConnection {
 	 * @throws Exception
 	 *             Throws exception if the SQL statement was wrong.
 	 */
-	public static String[][] sqlQuery(String sqlStmt) throws Exception {		
-		stmt = con.createStatement();
+	public static String[][] sqlQuery(String sqlStmt) {
+		String[][] result = null;
+		try {
+			stmt = con.createStatement();
 
-		rs = stmt.executeQuery(sqlStmt);
-		ResultSetMetaData rsmd = rs.getMetaData();
-		int clmCnt = rsmd.getColumnCount();
-		int rowCnt = 0;
-		while (rs.next()){
-			rowCnt++;
-		}
-		String[][] result = new String[rowCnt][clmCnt];
-		rs = stmt.executeQuery(sqlStmt);
-		
-		int r = 0;
-		while (rs.next()) {			
-			for (int i = 1; i <= clmCnt; i++) {
-				result[r][i-1] = rs.getString(i);
+			rs = stmt.executeQuery(sqlStmt);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int clmCnt = rsmd.getColumnCount();
+			int rowCnt = 0;
+			while (rs.next()) {
+				rowCnt++;
 			}
-			r++;
+			result = new String[rowCnt][clmCnt];
+			rs = stmt.executeQuery(sqlStmt);
+
+			int r = 0;
+			while (rs.next()) {
+				for (int i = 1; i <= clmCnt; i++) {
+					result[r][i - 1] = rs.getString(i);
+				}
+				r++;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
-	
-	/**
-	 * Creates a view in the database. Deletes an existing view, if existing.
-	 * 
-	 * @param sqlStmt
-	 *            The SQl statement to create a view.
-	 * @throws Exception
-	 *             Throws exception if the SQL statement was wrong.
-	 */
-	public static void createView(String sqlStmt) throws Exception {
-		stmt = con.createStatement();
-		stmt.execute(sqlStmt);			
-	}
+
 }

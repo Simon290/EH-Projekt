@@ -31,7 +31,7 @@ public class Main {
 	}
 
 	public static boolean hasRole(String appID, String userID) {
-		if (checkUserRoleAppPair(appID, userID)) {			
+		if (checkUserRoleAppPair(appID, userID)) {
 			return true;
 		} else {
 			System.out.println("keine Role für diese Application");
@@ -40,7 +40,7 @@ public class Main {
 	}
 
 	public static boolean hasResources(String appID, String userID) {
-		if (checkUserResourceAppPair(appID, userID)) {			
+		if (checkUserResourceAppPair(appID, userID)) {
 			return true;
 		} else {
 			System.out.println("keine Ressourcen für diese Application");
@@ -51,19 +51,11 @@ public class Main {
 	static boolean checkUserPassword(String userID, String password) {
 		boolean passwordValid = false;
 		String[][] result = new String[0][0];
-		try {
-			DBConnection.connect();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			result = DBConnection.sqlQuery(SqlStmts
-					.generateValidatePasswordSqlStmt(userID, password));
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
+		DBConnection.connect();
+
+		result = DBConnection.sqlQuery(SqlStmts
+				.generateValidatePasswordSqlStmt(userID, password));
 
 		if (result.length == 0) {
 			passwordValid = false;
@@ -76,28 +68,12 @@ public class Main {
 	static boolean checkUserRoleAppPair(String appID, String userID) {
 		String[][] resultRole;
 
-		try {
-			DBConnection.connect();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DBConnection.connect();
 
-		try {
-			resultRole = DBConnection.sqlQuery(SqlStmts
-					.generateCheckRoleExistenceSQLStmt(appID, userID));
+		resultRole = DBConnection.sqlQuery(SqlStmts
+				.generateCheckRoleExistenceSQLStmt(appID, userID));
 
-		} catch (Exception e) {
-			resultRole = new String[0][0];
-			e.printStackTrace();
-		}
-
-		try {
-			DBConnection.disconnect();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DBConnection.disconnect();
 
 		if (resultRole.length == 0) {
 			return false;
@@ -109,29 +85,12 @@ public class Main {
 	static boolean checkUserResourceAppPair(String appID, String userID) {
 		String[][] resultResource;
 
-		try {
-			DBConnection.connect();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DBConnection.connect();
 
-		try {
+		resultResource = DBConnection.sqlQuery(SqlStmts
+				.generateCheckResourceExistenceSQLStmt(appID, userID));
 
-			resultResource = DBConnection.sqlQuery(SqlStmts
-					.generateCheckResourceExistenceSQLStmt(appID, userID));
-		} catch (Exception e) {
-
-			resultResource = new String[0][0];
-			e.printStackTrace();
-		}
-
-		try {
-			DBConnection.disconnect();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DBConnection.disconnect();
 
 		if (resultResource.length == 0) {
 			return false;

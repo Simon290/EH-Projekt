@@ -8,12 +8,7 @@ import RightAllocation.Main;
 
 public class GuiApp1Code {
 
-	static GuiApp1 gui;
-
-	public GuiApp1Code(GuiApp1 gui) {
-		this.gui = gui;
-	}
-
+	
 	public static void Login(String appID, String userID, String password) {
 
 		if (Main.checkPassword(appID, userID, password)) {
