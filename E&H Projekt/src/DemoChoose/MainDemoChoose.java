@@ -10,6 +10,8 @@ import DemoApp2.DemoFrame2;
 public class MainDemoChoose {
 
 	/**
+	 * Starts the test Gui, and starts the Demo Application, if a Button is pressed
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -29,6 +31,10 @@ public class MainDemoChoose {
 		});
 	}
 
+	
+	/**
+	 * Starts the Demo App 1 in the middle of the screen
+	 */
 	static void startDemo1() {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -39,6 +45,9 @@ public class MainDemoChoose {
 		});
 	}
 
+	/**
+	 * Starts the Demo App 2 in the middle of the screen
+	 */
 	static void startDemo2() {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
