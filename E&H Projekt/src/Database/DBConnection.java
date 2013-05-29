@@ -8,12 +8,20 @@ package Database;
 /*
  * imports
  */
+import java.awt.Dimension;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /*
  *  Manage the connection to the database. Also interpret the SQL statement.
@@ -31,43 +39,34 @@ public class DBConnection {
 
 	/**
 	 * Establish the connection to the database.
-	 * 
-	 * @throws Exception
-	 *             Throws exception if the connection failed.
 	 */
 	public static void connect() {
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorHandling(e, "Fehler beim Laden des Treibers!");
 		}
 		try {
 			con = DriverManager
 					.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
 							+ path + "\\Database\\Rechteverwaltung.accdb");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorHandling(e, "Fehler bei Verbindungsaufbau zur Datenbank!");
 		}
 	}
 
 	/**
 	 * Disconnecting the database.
-	 * 
-	 * @throws Exception
-	 *             Throws exception if the disconnection failed.
 	 */
 	public static void disconnect() {
 		try {
 			rs.close();
-		
+
 			stmt.close();
-		
+
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorHandling(e, "Fehler bei Verbindungsabbau zur Datenbank!");
 		}
 	}
 
@@ -77,8 +76,6 @@ public class DBConnection {
 	 * @param sqlStmt
 	 *            The SQl statement to interpret.
 	 * @return Returns the result of the SQL statement.
-	 * @throws Exception
-	 *             Throws exception if the SQL statement was wrong.
 	 */
 	public static String[][] sqlQuery(String sqlStmt) {
 		String[][] result = null;
@@ -104,11 +101,38 @@ public class DBConnection {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorHandling(e, "Fehler im SQL Statment!");
 		}
 
 		return result;
+	}
+
+	/**
+	 * Handles the different errors. Shows an info dialog, with a short
+	 * description of the error and option to show the hole errormessage.
+	 * 
+	 * @param ex	the occurred error
+	 * @param dialogText	Short description of the error
+	 */
+	public static void errorHandling(Exception ex, String dialogText) {
+		String[] buttons = { "OK", "Details" };
+		int jop = JOptionPane.showOptionDialog(null, dialogText, "Fehler",
+				JOptionPane.ERROR_MESSAGE, 0, null, buttons, buttons[0]);
+		if (jop == 1) {
+			Writer writer = new StringWriter();
+			PrintWriter printWriter = new PrintWriter(writer);
+			ex.printStackTrace(printWriter);
+			String s = writer.toString();
+			JTextArea textBox = new JTextArea(s);
+			textBox.setBorder(null);
+			textBox.setEditable(false);
+			textBox.setLineWrap(true);
+			textBox.setAutoscrolls(true);
+			JScrollPane scrollPane = new JScrollPane(textBox);
+			scrollPane.setPreferredSize(new Dimension(600, 200));
+			JOptionPane.showMessageDialog(null, scrollPane, "Fehler-Details",
+					JOptionPane.WARNING_MESSAGE);
+		}
 	}
 
 }
