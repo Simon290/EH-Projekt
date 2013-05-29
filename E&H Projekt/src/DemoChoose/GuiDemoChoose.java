@@ -23,14 +23,16 @@ public class GuiDemoChoose extends javax.swing.JFrame {
 	private JButton jButtonDemo2;
 
 	/**
-	 * Auto-generated main method to display this JFrame
+	 * Constructor initializes the Gui
 	 */
-	
 	public GuiDemoChoose() {
 		super();
 		initGUI();
 	}
 
+	/**
+	 * Method initializes the Gui, sets the Buttons and creates the Event Handlers
+	 */
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

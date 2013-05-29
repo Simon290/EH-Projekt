@@ -1,5 +1,8 @@
 package DemoApp1;
 
+/*
+ * imports
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,14 +52,16 @@ public class GuiApp1 extends javax.swing.JFrame {
 	static String appID = "1";
 
 	/**
-	 * Auto-generated main method to display this JFrame
+	 * Constructor initializes the Gui of App 1
 	 */
-
 	public GuiApp1() {
 		super();
 		initGUI();
 	}
 
+	/**
+	 * Method initializes the Gui, sets all Buttons and creates the event Handlers.
+	 */
 	private void initGUI() {
 		try {
 			this.setTitle("Application 1");
@@ -222,62 +227,127 @@ public class GuiApp1 extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Check weather the Login is done
+	 *    
+	 * @return returns weather the login is done
+	 */
 	public static JButton getbLogin() {
 		return bLogin;
 	}
 
+	/**
+	 * Sets the Login Attribute to true, if Login is correct
+	 *    
+	 *    @param bLogin 
+	 *      	Button Login
+	 */
 	public void setbLogin(JButton bLogin) {
 		this.bLogin = bLogin;
 	}
 
-	public void setTfUserName(JTextField tfUserName) {
-	}
-
+	/**
+	 * Get the Username from Textfield
+	 *    
+	 * @return returns Username
+	 */
 	public JTextField getTfUserName() {
 		return tfUserName;
 	}
 
+	/**
+	 * Get the Password from Textfield
+	 *    
+	 * @return returns Password
+	 */
 	public JTextField getTfUserPassword() {
 		return tfUserPassword;
 	}
 
+	/**
+	 * Get the Textfield Permissions
+	 *     
+	 * @return returns Textfield Permissions
+	 */
 	public static JTextField getTfPermissions() {
 		return tfPermissions;
 	}
 
+	/**
+	 * Get the Textfield Role
+	 *     
+	 * @return returns Textfield Role
+	 */
 	public static JTextField getTfRole() {
 		return tfRole;
 	}
 
+	/**
+	 * Get the ComboBox Resources
+	 *     
+	 * @return returns ComboBox Resources
+	 */
 	public static JComboBox<String> getCbResources() {
 		return cbRecources;
 	}
 
+	/**
+	 * Get the JButton Read
+	 *     
+	 * @return returns JButton Read
+	 */
 	public static JButton getbRead() {
 		return bRead;
 	}
 
+	/**
+	 * Get the JButton Write
+	 *     
+	 * @return returns JButton Write
+	 */
 	public static JButton getbWrite() {
 		return bWrite;
 	}
 
+	/**
+	 * Get the JButton Update
+	 *     
+	 * @return returns JButton Update
+	 */
 	public static JButton getbUpdate() {
 		return bUpdate;
 	}
 
+	/**
+	 * Get the JButton Delete
+	 *     
+	 * @return returns JButton Delete
+	 */
 	public static JButton getbDelete() {
 		return bDelete;
 	}
 
+	/**
+	 * Get the JButton Logout
+	 *     
+	 * @return returns JButton Logout
+	 */
 	public static JButton getbLogout() {
 		return bLogout;
 	}
 
+	/**
+	 * Get the TextField Level
+	 *     
+	 * @return returns textField Level
+	 */
 	public static JTextField getTfLevel() {
 		return tfLevel;
 	}
 
+	/**
+	 * Sets all Components in Gui back to the Default Values
+	 */
 	public static void setDefault() {
 		bRead.setEnabled(false);
 		bWrite.setEnabled(false);
@@ -294,6 +364,9 @@ public class GuiApp1 extends javax.swing.JFrame {
 	}
 
 	static class Actions {
+		/**
+		 * Action listener for Login Button
+		 */
 		public static void btnLogin() {
 			// Login Button gedrückt
 			String userName = tfUserName.getText();
@@ -301,6 +374,9 @@ public class GuiApp1 extends javax.swing.JFrame {
 			GuiApp1Code.Login(appID, userName, password);
 		}
 
+		/**
+		 * Action Listener for Logout Button
+		 */
 		public static void btnLogout() {
 			// Logout Button gedrückt
 			String userName = tfUserName.getText();

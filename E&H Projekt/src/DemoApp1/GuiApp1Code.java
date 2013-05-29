@@ -8,7 +8,18 @@ import RightAllocation.Main;
 
 public class GuiApp1Code {
 
-	
+	/**
+	 * This Method is called, when the Login Button is pressed
+	 *     
+	 * @param appID
+	 * 		The AppID of the current Application
+	 * 
+	 * @param userID
+	 * 		the UserId of the Current User
+	 * 
+	 * @param password
+	 * 		the Password of the current User
+	 */
 	public static void Login(String appID, String userID, String password) {
 
 		if (Main.checkPassword(appID, userID, password)) {
@@ -32,8 +43,16 @@ public class GuiApp1Code {
 		}
 	}
 
+	/**
+	 * Gets the Resources from Cache and writes them in the Combo Box
+	 *     
+	 * @param appID
+	 * 		The AppID of the current Application
+	 * 
+	 * @param userID
+	 * 		the UserId of the Current User
+	 */
 	public static void setResources(String appID, String userID) {
-		// set Resources
 		String[] resources;
 		resources = Main.getRecources(appID, userID);
 		JComboBox<String> cbResources = GuiApp1.getCbResources();
@@ -44,6 +63,15 @@ public class GuiApp1Code {
 		}
 	}
 
+	/**
+	 * Gets the Permissions from Cache and writes them in the Textfield
+	 *     
+	 * @param appID
+	 * 		The AppID of the current Application
+	 * 
+	 * @param userID
+	 * 		the UserId of the Current User
+	 */
 	public static void setPermissions(String appID, String userID) {
 		// set Permissions
 		String[] permissions;
@@ -58,11 +86,26 @@ public class GuiApp1Code {
 		setButtons(permissions[0]);
 	}
 
+	/**
+	 * Gets the Role from Cache and writes them in the Textfield
+	 *     
+	 * @param appID
+	 * 		The AppID of the current Application
+	 * 
+	 * @param userID
+	 * 		the UserId of the Current User
+	 */
 	public static void setRole(String appID, String userID) {
 		String role = Main.getRole(appID, userID);
 		GuiApp1.getTfRole().setText(role);
 	}
 
+	/**
+	 * Sets the Buttons enable or disable, related to the Permission which is set.
+	 *     
+	 * @param permission
+	 * 		The highest Permission
+	 */
 	private static void setButtons(String permission) {
 		switch (permission) {
 		case "Read":
@@ -91,6 +134,15 @@ public class GuiApp1Code {
 		}
 	}
 
+	/**
+	 * This Method is called, when the Button Logout is pressed
+	 *     
+	 * @param appID
+	 * 		The AppID of the current Application
+	 * 
+	 * @param userID
+	 * 		the UserId of the Current User
+	 */
 	public static void Logout(String appID, String userID) {
 		Main.deleteData(appID, userID);
 		GuiApp1.setDefault();
