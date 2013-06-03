@@ -129,4 +129,13 @@ public class DBConnection {
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
+	
+	/**
+	 * Just for testing. Sets the path to the database.
+	 * 
+	 * @param p	the new Path
+	 */
+	public static void setPath(String p){
+		path = p;
+	}
 }

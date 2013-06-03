@@ -223,9 +223,7 @@ public class Main {
 	 *            The ID of the current User      
 	 */	
 	public static void deleteData(String appID, String userID) {
-		Cache c = m.get(appID + userID);
-		c = null;
-		//m.remove(appID + userID);
+		m.remove(appID + userID);
 	}
 
 }
