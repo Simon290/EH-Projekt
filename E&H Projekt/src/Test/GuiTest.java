@@ -3,20 +3,16 @@ package Test;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
-import javax.swing.text.Caret;
 
 import Database.DBConnection;
+import DemoApp1.GuiApp1;
 import RightAllocation.Main;
 
 /**
@@ -36,6 +32,7 @@ public class GuiTest extends javax.swing.JFrame {
 	private static JLabel jLabelDBStatus;
 	
 	public static boolean toggle;
+	private static JButton jButtonEditCache;
 
 	public GuiTest() {
 		super();
@@ -46,7 +43,7 @@ public class GuiTest extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			pack();
-			this.setSize(245, 157);
+			this.setSize(256, 183);
 			this.setLocation(new java.awt.Point(0, 0));
 			getContentPane().setLayout(null);
 			this.setTitle("Test");
@@ -66,7 +63,7 @@ public class GuiTest extends javax.swing.JFrame {
 				jButtonDB = new JButton();
 				getContentPane().add(jButtonDB);
 				jButtonDB.setText("DB disconnect/connect");
-				jButtonDB.setBounds(12, 46, 216, 23);
+				jButtonDB.setBounds(12, 82, 216, 23);
 				jButtonDB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						toggleConnection();
@@ -77,13 +74,29 @@ public class GuiTest extends javax.swing.JFrame {
 				jLabelDBStatus = new JLabel();
 				getContentPane().add(jLabelDBStatus);
 				jLabelDBStatus.setText("DB Status: connectet");
-				jLabelDBStatus.setBounds(12, 80, 215, 16);
+				jLabelDBStatus.setBounds(12, 116, 215, 16);
+			}
+			{
+				jButtonEditCache = new JButton();
+				getContentPane().add(jButtonEditCache);
+				jButtonEditCache.setText("Edit Cache");
+				jButtonEditCache.setBounds(12, 48, 216, 23);
+				jButtonEditCache.setEnabled(false);
+				jButtonEditCache.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						editCache();
+					}
+				});
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	public static JButton getBEditCache(){
+		return jButtonEditCache;
+	}
+	
 	public static void showCache() {
 		int n = Main.m.size();
 		String[] keys = new String[n];
@@ -93,8 +106,7 @@ public class GuiTest extends javax.swing.JFrame {
 		sCache = "Anzahl Cacheobjekte: " + n + "\n\n";
 
 		for (int i = 0; i < keys.length; i++) {
-			JButton jButtonDB;
-			JLabel jLabelDBStatus;
+			
 			sCache = sCache + "Key: " + keys[i] + "\n\n";
 
 			String spaceUI = "                  ";
@@ -149,11 +161,11 @@ public class GuiTest extends javax.swing.JFrame {
 			toggle = false;
 			DBConnection.setPath(System.getProperty("user.dir"));
 			jLabelDBStatus.setText("DB Status: connectet");
-		}
-		
-		
-		
+		}		
 		
 	}
-		
+	
+	public static void editCache(){
+		Main.EditCache("1", GuiApp1.getTfUserName().getText());
+	}
 }

@@ -26,10 +26,7 @@ public class Cache {
 		timeStamp = getCurrentTimeAsString();
 	}
 
-	/*
-	 * Methods
-	 */
-
+	
 	/**
 	 * Returns an array of strings with the userinfo.
 	 * 

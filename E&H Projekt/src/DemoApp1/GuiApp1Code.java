@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import RightAllocation.Main;
+import Test.GuiTest;
 
 public class GuiApp1Code {
 
@@ -35,14 +36,34 @@ public class GuiApp1Code {
 					JOptionPane.showMessageDialog(null, "Login war erfolgreich");
 					GuiApp1.getbLogin().setEnabled(false);
 					GuiApp1.getbLogout().setEnabled(true);
+					GuiApp1.getbUpdateData().setEnabled(true);
 					GuiApp1.getTfUserName().setEditable(false);
 					GuiApp1.getTfUserPassword().setEditable(false);
+					GuiTest.getBEditCache().setEnabled(true);
 				}
-			}
-			
+			}			
 		} else {
 			JOptionPane.showMessageDialog(null, "Login fehlgeschlagen");
 		}
+	}
+	
+	/**
+	 * Gets the Resources from Cache and updates the GUI.
+	 *     
+	 * @param appID
+	 * 		The AppID of the current Application
+	 * 
+	 * @param userID
+	 * 		the UserId of the Current User
+	 */
+	public static void update(String appID, String userID) {
+		String[] permissions;
+		permissions = Main.getPermission(appID, userID);
+		
+		setResources(appID, userID);
+		setRole(appID, userID);
+		setPermissions(appID, userID);
+		setButtons(permissions[0]);
 	}
 
 	/**
@@ -75,7 +96,6 @@ public class GuiApp1Code {
 	 * 		the UserId of the Current User
 	 */
 	public static void setPermissions(String appID, String userID) {
-		// set Permissions
 		String[] permissions;
 		permissions = Main.getPermission(appID, userID);
 

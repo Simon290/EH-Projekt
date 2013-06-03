@@ -16,6 +16,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import Test.GuiTest;
+
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
  * Builder, which is free for non-commercial use. If Jigloo is being used
@@ -34,6 +36,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 	private static JButton bDelete;
 	private JLabel lResources;
 	private JLabel lPassword;
+	private static JButton bUpdateData;
 	private JLabel lLevel;
 	private JLabel lPermission;
 	private JLabel lRolle;
@@ -152,7 +155,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				getContentPane().add(bUpdate);
 				bUpdate.setText("Update");
 				bUpdate.setBounds(260, 158, 100, 23);
-				bUpdate.setEnabled(false);
+				bUpdate.setEnabled(false);		
 			}
 			{
 				bDelete = new JButton();
@@ -215,11 +218,22 @@ public class GuiApp1 extends javax.swing.JFrame {
 				lLevel.setText("Level:");
 				lLevel.setBounds(236, 78, 100, 16);
 			}
+			{
+				bUpdateData = new JButton();
+				getContentPane().add(bUpdateData);
+				bUpdateData.setText("UpdateData");
+				bUpdateData.setEnabled(false);
+				bUpdateData.setBounds(12, 187, 100, 23);
+				bUpdateData.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						Actions.btnUpdate();
+					}
+				});
+			}
 			this.setFocusCycleRoot(false);
 			pack();
 			this.setSize(384, 261);
 		} catch (Exception e) {
-			// add your error handling code here
 			e.printStackTrace();
 		}
 	}
@@ -321,6 +335,15 @@ public class GuiApp1 extends javax.swing.JFrame {
 	public static JButton getbLogout() {
 		return bLogout;
 	}
+	
+	/**
+	 * Get the JButton UpdateData
+	 *     
+	 * @return returns JButton UpdateData
+	 */
+	public static JButton getbUpdateData() {
+		return bUpdateData;
+	}
 
 	/**
 	 * Get the TextField Level
@@ -339,6 +362,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		bWrite.setEnabled(false);
 		bUpdate.setEnabled(false);
 		bDelete.setEnabled(false);
+		bUpdateData.setEnabled(false);
 		tfPermissions.setText("Permissions");
 		tfRole.setText("Rolle");
 		tfLevel.setText("Level");
@@ -349,8 +373,10 @@ public class GuiApp1 extends javax.swing.JFrame {
 		cbRecources.removeAllItems();
 		tfUserName.setEditable(true);
 		tfUserPassword.setEditable(true);
+		GuiTest.getBEditCache().setEnabled(false);
 	}
-
+	
+	
 	public static class Actions {
 		/**
 		 * Action listener for Login Button
@@ -367,6 +393,14 @@ public class GuiApp1 extends javax.swing.JFrame {
 		public static void btnLogout() {
 			String userName = tfUserName.getText();
 			GuiApp1Code.Logout(appID, userName);
+		}
+		
+		/**
+		 * Action Listener for Logout Button
+		 */
+		public static void btnUpdate() {
+			String userName = tfUserName.getText();
+			GuiApp1Code.update(appID, userName);
 		}
 	}
 

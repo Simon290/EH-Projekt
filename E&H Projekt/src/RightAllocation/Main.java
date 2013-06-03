@@ -225,5 +225,24 @@ public class Main {
 	public static void deleteData(String appID, String userID) {
 		m.remove(appID + userID);
 	}
+	
+	/**
+	 * Just for testing. Edits the Cache of current User.
+	 * 
+	 * @param appID
+	 *            The ID of the current App  
+	 * @param userID
+	 *            The ID of the current User      
+	 */	
+	public static void EditCache(String appID, String userID) {		
+		String tmp = "";
+		for (int i = 0; i < m.get(appID + userID).getResources().length; i++){
+			tmp = tmp + m.get(appID + userID).getResources()[i] + ", ";
+		}
+		tmp = tmp + "Test";
+		String[][] newRes = {{tmp},{}};
+		m.get(appID + userID).getResources();
+		m.get(appID + userID).setResources(newRes);
+	}
 
 }
