@@ -26,7 +26,6 @@ public class Cache {
 		timeStamp = getCurrentTimeAsString();
 	}
 
-	
 	/**
 	 * Returns an array of strings with the userinfo.
 	 * 
@@ -42,14 +41,19 @@ public class Cache {
 	 * @param userInfo
 	 */
 	public void setUserInfo(String[][] userInfo) {
-		int lng = userInfo[0].length;
-		String[] userinf = new String[lng];
+		try {
+			int lng = userInfo[0].length;
+			String[] userinf = new String[lng];
 
-		for (int i = 0; i < lng; i++) {
-			userinf[i] = userInfo[0][i];
+			for (int i = 0; i < lng; i++) {
+				userinf[i] = userInfo[0][i];
+			}
+
+			this.userInfo = userinf;
+		} catch (Exception e) {
+			// no userinfo available
 		}
 
-		this.userInfo = userinf;
 	}
 
 	/**
@@ -67,14 +71,19 @@ public class Cache {
 	 * @param appInfo
 	 */
 	public void setAppInfo(String[][] appInfo) {
-		int lng = appInfo[0].length;
-		String[] appinf = new String[lng];
+		try {
+			int lng = appInfo[0].length;
+			String[] appinf = new String[lng];
 
-		for (int i = 0; i < lng; i++) {
-			appinf[i] = appInfo[0][i];
+			for (int i = 0; i < lng; i++) {
+				appinf[i] = appInfo[0][i];
+			}
+
+			this.appInfo = appinf;
+		} catch (Exception e) {
+			// no appinfo available
 		}
 
-		this.appInfo = appinf;
 	}
 
 	/**
@@ -92,14 +101,20 @@ public class Cache {
 	 * @param permissions
 	 */
 	public void setPermissions(String[][] permissions) {
-		int lng = permissions[0].length;
-		String[] perm = new String[lng];
+		try {
+			System.out.println("köp");
+			int lng = permissions[0].length;
+			String[] perm = new String[lng];
 
-		for (int i = 0; i < lng; i++) {
-			perm[i] = permissions[0][i];
+			for (int i = 0; i < lng; i++) {
+				perm[i] = permissions[0][i];
+			}
+
+			this.permissions = perm;
+		} catch (Exception e) {
+			// no permissions available
 		}
 
-		this.permissions = perm;
 	}
 
 	/**
@@ -117,14 +132,19 @@ public class Cache {
 	 * @param resources
 	 */
 	public void setResources(String[][] resources) {
-		int lng = resources.length;
-		String[] res = new String[lng];
+		try {
+			int lng = resources[0].length;
+			String[] res = new String[lng];
 
-		for (int i = 0; i < lng; i++) {
-			res[i] = resources[i][0];
+			for (int i = 0; i < lng; i++) {
+				res[i] = resources[i][0];
+			}
+
+			this.resources = res;
+		} catch (Exception e) {
+			// no resources available
 		}
 
-		this.resources = res;
 	}
 
 	/**
@@ -161,8 +181,13 @@ public class Cache {
 	 * 
 	 * @param role
 	 */
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(String role[][]) {
+		try {
+			this.role = role[0][0];
+		} catch (Exception e) {
+			// no role available
+		}
+		
 	}
 
 	/**
@@ -175,11 +200,11 @@ public class Cache {
 	 *            The userID of a specific user.
 	 */
 	public void addData(String appID, String userID) {
-		String[][] sqlResultUserInfo = new String[0][0];
-		String[][] sqlResultAppInfo = new String[0][0];
-		String[][] sqlResultPermissions = new String[0][0];
-		String[][] sqlResultResources = new String[0][0];
-		String[][] sqlResultRole = new String[0][0];
+		String[][] sqlResultUserInfo;
+		String[][] sqlResultAppInfo;
+		String[][] sqlResultPermissions;
+		String[][] sqlResultResources;
+		String[][] sqlResultRole;
 
 		DBConnection.connect();
 
@@ -198,12 +223,14 @@ public class Cache {
 				.generateSelectFromViewSqlStmt(appID, userID, "RoleName"));
 
 		DBConnection.disconnect();
+		
+		System.out.println("jl: " + sqlResultPermissions[0]);
 
 		setUserInfo(sqlResultUserInfo);
 		setAppInfo(sqlResultAppInfo);
 		setPermissions(sqlResultPermissions);
 		setResources(sqlResultResources);
-		setRole(sqlResultRole[0][0]);
+		setRole(sqlResultRole);
 	}
 
 	/**

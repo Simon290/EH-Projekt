@@ -9,6 +9,7 @@ package Database;
  * imports
  */
 import java.awt.Dimension;
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -18,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Dictionary;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -128,6 +130,21 @@ public class DBConnection {
 			JOptionPane.showMessageDialog(null, scrollPane, "Fehler-Details",
 					JOptionPane.WARNING_MESSAGE);
 		}
+	}
+	
+	/**
+	 * Checks existence of the DB.
+	 * 
+	 * @return	True if DB exists. False if not.
+	 */
+	public static boolean checkDBConnection(){		
+		File f = new File(path + "\\Database\\Rechteverwaltung.accdb");			
+		
+		if(f.exists()){			
+			return true;
+		} else{
+			return false;
+		}		
 	}
 	
 	/**

@@ -79,7 +79,7 @@ public class GuiTest extends javax.swing.JFrame {
 			{
 				jButtonEditCache = new JButton();
 				getContentPane().add(jButtonEditCache);
-				jButtonEditCache.setText("Edit Cache");
+				jButtonEditCache.setText("Add resource");
 				jButtonEditCache.setBounds(12, 48, 216, 23);
 				jButtonEditCache.setEnabled(false);
 				jButtonEditCache.addActionListener(new ActionListener() {
@@ -130,7 +130,7 @@ public class GuiTest extends javax.swing.JFrame {
 			sCache = sCache + "Recht: "
 					+ Main.m.get(keys[i]).getPermissions()[0] + "\n";
 
-			String spaceRE = "                ";
+			String spaceRE = "                     ";
 			String resources = "";
 			for (int re = 0; re < Main.m.get(keys[i]).getResources().length; re++) {
 				resources = resources + Main.m.get(keys[i]).getResources()[re]
@@ -156,16 +156,17 @@ public class GuiTest extends javax.swing.JFrame {
 		if(toggle != true){
 			toggle = true;
 			DBConnection.setPath("WrongPath");
-			jLabelDBStatus.setText("DB Status: disconnectet");
+			jLabelDBStatus.setText("DB Status: disconnected");
 		} else{
 			toggle = false;
 			DBConnection.setPath(System.getProperty("user.dir"));
-			jLabelDBStatus.setText("DB Status: connectet");
+			jLabelDBStatus.setText("DB Status: connected");
 		}		
 		
 	}
 	
 	public static void editCache(){
 		Main.EditCache("1", GuiApp1.getTfUserName().getText());
+		JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!", "Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

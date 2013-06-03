@@ -11,7 +11,10 @@ package RightAllocation;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import Database.DBConnection;
+import DemoApp1.GuiApp1Code;
 
 /*
  *  Just for tests and development
@@ -36,7 +39,7 @@ public class Main {
 		if (checkUserPassword(userID, password)) {
 			return true;
 		} else {
-			System.out.println("Passwort oder Username falsch");
+			JOptionPane.showMessageDialog(null, "Passwort oder Username falsch oder nicht vorhanden!", "Loginfehler ", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
@@ -54,7 +57,7 @@ public class Main {
 		if (checkUserRoleAppPair(appID, userID)) {
 			return true;
 		} else {
-			System.out.println("keine Role für diese Application");
+			JOptionPane.showMessageDialog(null, "Keine Rolle für diese Application vorhanden!", "Keine Rolle", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
@@ -72,7 +75,7 @@ public class Main {
 		if (checkUserResourceAppPair(appID, userID)) {
 			return true;
 		} else {
-			System.out.println("keine Ressourcen für diese Application");
+			JOptionPane.showMessageDialog(null, "Keine Ressourcen für diese Application vorhanden!", "Keine Ressource", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
@@ -235,12 +238,17 @@ public class Main {
 	 *            The ID of the current User      
 	 */	
 	public static void EditCache(String appID, String userID) {		
-		String tmp = "";
-		for (int i = 0; i < m.get(appID + userID).getResources().length; i++){
-			tmp = tmp + m.get(appID + userID).getResources()[i] + ", ";
-		}
-		tmp = tmp + "Test";
-		String[][] newRes = {{tmp},{}};
+		
+		String[] oldRes = m.get(appID + userID).getResources();
+		String[][] newRes = new String[oldRes.length + 1][oldRes.length + 1];
+		
+		for (int i = 0; i < oldRes.length; i++){
+			newRes[i][0] = oldRes[i];
+			newRes[0][i] = oldRes[i];
+		}		
+		
+		newRes[oldRes.length][0] = "Neu";
+		
 		m.get(appID + userID).getResources();
 		m.get(appID + userID).setResources(newRes);
 	}

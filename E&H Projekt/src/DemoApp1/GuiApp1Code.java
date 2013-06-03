@@ -4,6 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Database.DBConnection;
 import RightAllocation.Main;
 import Test.GuiTest;
 
@@ -11,73 +12,66 @@ public class GuiApp1Code {
 
 	/**
 	 * This Method is called, when the Login Button is pressed
-	 *     
+	 * 
 	 * @param appID
-	 * 		The AppID of the current Application
+	 *            The AppID of the current Application
 	 * 
 	 * @param userID
-	 * 		the UserId of the Current User
+	 *            the UserId of the Current User
 	 * 
 	 * @param password
-	 * 		the Password of the current User
+	 *            the Password of the current User
 	 */
 	public static void Login(String appID, String userID, String password) {
-
-		if (Main.checkPassword(appID, userID, password)) {
-			System.out.println("Login erfolgreich");
-			if(Main.hasRole(appID, userID)){				
-				System.out.println("Role vorhanden");
-				if(Main.hasResources(appID, userID)){
-					System.out.println("Ressourcen vorhanden");
-					Main.loadData(appID, userID);
+		if (DBConnection.checkDBConnection()) {
+			if (Main.checkPassword(appID, userID, password)) {
+				JOptionPane.showMessageDialog(null, "Login war erfolgreich");
+				GuiApp1.getbLogin().setEnabled(false);
+				GuiApp1.getbLogout().setEnabled(true);
+				GuiApp1.getTfUserName().setEditable(false);
+				GuiApp1.getTfUserPassword().setEditable(false);
+				Main.loadData(appID, userID);
+				if (Main.hasRole(appID, userID)) {
 					setRole(appID, userID);
 					setPermissions(appID, userID);
-					setResources(appID, userID);
-					JOptionPane.showMessageDialog(null, "Login war erfolgreich");
-					GuiApp1.getbLogin().setEnabled(false);
-					GuiApp1.getbLogout().setEnabled(true);
-					GuiApp1.getbUpdateData().setEnabled(true);
-					GuiApp1.getTfUserName().setEditable(false);
-					GuiApp1.getTfUserPassword().setEditable(false);
-					GuiTest.getBEditCache().setEnabled(true);
+					if (Main.hasResources(appID, userID)) {						
+						setResources(appID, userID);
+						GuiApp1.getbUpdateData().setEnabled(true);
+						GuiTest.getBEditCache().setEnabled(true);
+					}
 				}
-			}			
-		} else {
-			JOptionPane.showMessageDialog(null, "Login fehlgeschlagen");
+			} else {
+				JOptionPane.showMessageDialog(null, "Login fehlgeschlagen");
+			}
 		}
 	}
-	
+
 	/**
 	 * Gets the Resources from Cache and updates the GUI.
-	 *     
+	 * 
 	 * @param appID
-	 * 		The AppID of the current Application
+	 *            The AppID of the current Application
 	 * 
 	 * @param userID
-	 * 		the UserId of the Current User
+	 *            the UserId of the Current User
 	 */
 	public static void update(String appID, String userID) {
-		String[] permissions;
-		permissions = Main.getPermission(appID, userID);
-		
 		setResources(appID, userID);
-		setRole(appID, userID);
-		setPermissions(appID, userID);
-		setButtons(permissions[0]);
 	}
 
 	/**
 	 * Gets the Resources from Cache and writes them in the Combo Box
-	 *     
+	 * 
 	 * @param appID
-	 * 		The AppID of the current Application
+	 *            The AppID of the current Application
 	 * 
 	 * @param userID
-	 * 		the UserId of the Current User
+	 *            the UserId of the Current User
 	 */
 	public static void setResources(String appID, String userID) {
 		String[] resources;
 		resources = Main.getRecources(appID, userID);
+
 		JComboBox<String> cbResources = GuiApp1.getCbResources();
 
 		cbResources.removeAllItems();
@@ -88,12 +82,12 @@ public class GuiApp1Code {
 
 	/**
 	 * Gets the Permissions from Cache and writes them in the Textfield
-	 *     
+	 * 
 	 * @param appID
-	 * 		The AppID of the current Application
+	 *            The AppID of the current Application
 	 * 
 	 * @param userID
-	 * 		the UserId of the Current User
+	 *            the UserId of the Current User
 	 */
 	public static void setPermissions(String appID, String userID) {
 		String[] permissions;
@@ -101,7 +95,6 @@ public class GuiApp1Code {
 
 		JTextField tfPermissions = GuiApp1.getTfPermissions();
 		JTextField tfLevel = GuiApp1.getTfLevel();
-
 		tfPermissions.setText(permissions[0]);
 		tfLevel.setText(permissions[1]);
 
@@ -110,12 +103,12 @@ public class GuiApp1Code {
 
 	/**
 	 * Gets the Role from Cache and writes them in the Textfield
-	 *     
+	 * 
 	 * @param appID
-	 * 		The AppID of the current Application
+	 *            The AppID of the current Application
 	 * 
 	 * @param userID
-	 * 		the UserId of the Current User
+	 *            the UserId of the Current User
 	 */
 	public static void setRole(String appID, String userID) {
 		String role = Main.getRole(appID, userID);
@@ -123,10 +116,11 @@ public class GuiApp1Code {
 	}
 
 	/**
-	 * Sets the Buttons enable or disable, related to the Permission which is set.
-	 *     
+	 * Sets the Buttons enable or disable, related to the Permission which is
+	 * set.
+	 * 
 	 * @param permission
-	 * 		The highest Permission
+	 *            The highest Permission
 	 */
 	private static void setButtons(String permission) {
 		switch (permission) {
@@ -158,12 +152,12 @@ public class GuiApp1Code {
 
 	/**
 	 * This Method is called, when the Button Logout is pressed
-	 *     
+	 * 
 	 * @param appID
-	 * 		The AppID of the current Application
+	 *            The AppID of the current Application
 	 * 
 	 * @param userID
-	 * 		the UserId of the Current User
+	 *            the UserId of the Current User
 	 */
 	public static void Logout(String appID, String userID) {
 		Main.deleteData(appID, userID);
