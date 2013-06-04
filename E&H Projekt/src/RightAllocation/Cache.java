@@ -102,7 +102,6 @@ public class Cache {
 	 */
 	public void setPermissions(String[][] permissions) {
 		try {
-			System.out.println("köp");
 			int lng = permissions[0].length;
 			String[] perm = new String[lng];
 
@@ -224,7 +223,6 @@ public class Cache {
 
 		DBConnection.disconnect();
 		
-		System.out.println("jl: " + sqlResultPermissions[0]);
 
 		setUserInfo(sqlResultUserInfo);
 		setAppInfo(sqlResultAppInfo);

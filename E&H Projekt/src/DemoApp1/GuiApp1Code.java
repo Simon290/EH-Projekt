@@ -25,7 +25,7 @@ public class GuiApp1Code {
 	public static void Login(String appID, String userID, String password) {
 		if (DBConnection.checkDBConnection()) {
 			if (Main.checkPassword(appID, userID, password)) {
-				JOptionPane.showMessageDialog(null, "Login war erfolgreich");
+				JOptionPane.showMessageDialog(null, "Login erfolgreich!", "", JOptionPane.INFORMATION_MESSAGE);
 				GuiApp1.getbLogin().setEnabled(false);
 				GuiApp1.getbLogout().setEnabled(true);
 				GuiApp1.getTfUserName().setEditable(false);
@@ -41,8 +41,10 @@ public class GuiApp1Code {
 					}
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Login fehlgeschlagen");
+				JOptionPane.showMessageDialog(null, "Login fehlgeschlagen!", "Fehler", JOptionPane.ERROR_MESSAGE);
 			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Keine Verbindung zur Datenbank!", "Fehler", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
