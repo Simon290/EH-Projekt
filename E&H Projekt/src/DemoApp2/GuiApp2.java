@@ -8,14 +8,15 @@ package DemoApp2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import Test.GuiTest;
@@ -38,6 +39,7 @@ public class GuiApp2 extends javax.swing.JFrame {
 	private static JButton bDelete;
 	private JLabel lResources;
 	private JLabel lPassword;
+	private static JTextArea taRecources;
 	private static JButton bUpdateData;
 	private JLabel lLevel;
 	private JLabel lPermission;
@@ -50,7 +52,6 @@ public class GuiApp2 extends javax.swing.JFrame {
 	private static JButton bRead;
 	static private JTextField tfRole;
 	static private JTextField tfLevel;
-	private static JComboBox<String> cbRecources;
 	private static JTextField tfPermissions;
 	private static JTextField tfUserPassword;
 	private JSeparator jSeparator1;
@@ -79,7 +80,7 @@ public class GuiApp2 extends javax.swing.JFrame {
 				bLogin = new JButton();
 				getContentPane().add(bLogin);
 				bLogin.setText("Login");
-				bLogin.setBounds(242, 12, 100, 23);
+				bLogin.setBounds(12, 125, 100, 23);
 				bLogin.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						Actions.btnLogin();
@@ -89,12 +90,12 @@ public class GuiApp2 extends javax.swing.JFrame {
 			{
 				tfUserName = new JTextField();
 				getContentPane().add(getTfUserName());
-				tfUserName.setBounds(12, 30, 82, 23);
+				tfUserName.setBounds(12, 30, 100, 23);
 			}
 			{
 				tfUserPassword = new JPasswordField();
 				getContentPane().add(getTfUserPassword());
-				tfUserPassword.setBounds(124, 30, 100, 23);
+				tfUserPassword.setBounds(12, 81, 100, 23);
 				tfUserPassword.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						Actions.btnLogin();
@@ -104,78 +105,69 @@ public class GuiApp2 extends javax.swing.JFrame {
 			{
 				jSeparator1 = new JSeparator();
 				getContentPane().add(jSeparator1);
-				jSeparator1.setBounds(12, 69, 355, 10);
+				jSeparator1.setBounds(123, 6, 10, 236);
+				jSeparator1.setOrientation(SwingConstants.VERTICAL);
 			}
 			{
 				tfPermissions = new JTextField();
 				getContentPane().add(getTfPermissions());
 				tfPermissions.setText("Permissions");
-				tfPermissions.setBounds(124, 100, 100, 21);
+				tfPermissions.setBounds(135, 82, 100, 21);
 				tfPermissions.setEditable(false);
-			}
-			{
-				ComboBoxModel<String> cbRecourcesModel = new DefaultComboBoxModel<String>(
-						new String[] {});
-				cbRecourcesModel.setSelectedItem("");
-				cbRecources = new JComboBox<String>();
-				getContentPane().add(cbRecources);
-				cbRecources.setModel(cbRecourcesModel);
-				cbRecources.setBounds(12, 159, 125, 21);
 			}
 			{
 				tfLevel = new JTextField();
 				getContentPane().add(tfLevel);
 				tfLevel.setText("Level");
 				tfLevel.setEditable(false);
-				tfLevel.setBounds(236, 100, 42, 21);
-				tfLevel.setSize(100, 21);
+				tfLevel.setBounds(133, 131, 102, 21);
 			}
 			{
 				tfRole = new JTextField();
 				getContentPane().add(tfRole);
 				tfRole.setText("Rolle");
 				tfRole.setEditable(false);
-				tfRole.setBounds(12, 99, 89, 22);
-				tfRole.setSize(100, 22);
+				tfRole.setBounds(135, 30, 100, 22);
 			}
 			{
 				bRead = new JButton();
 				getContentPane().add(bRead);
 				bRead.setText("Read");
-				bRead.setBounds(149, 158, 100, 23);
+				bRead.setBounds(280, 30, 100, 23);
 				bRead.setEnabled(false);
 			}
 			{
 				bWrite = new JButton();
 				getContentPane().add(bWrite);
 				bWrite.setText("Write");
-				bWrite.setBounds(149, 187, 100, 23);
+				bWrite.setBounds(280, 81, 100, 23);
 				bWrite.setEnabled(false);
 			}
 			{
 				bUpdate = new JButton();
 				getContentPane().add(bUpdate);
 				bUpdate.setText("Update");
-				bUpdate.setBounds(260, 158, 100, 23);
+				bUpdate.setBounds(280, 130, 100, 23);
 				bUpdate.setEnabled(false);		
 			}
 			{
 				bDelete = new JButton();
 				getContentPane().add(bDelete);
 				bDelete.setText("Delete");
-				bDelete.setBounds(260, 187, 100, 23);
+				bDelete.setBounds(280, 180, 100, 23);
 				bDelete.setEnabled(false);
 			}
 			{
 				lResources = new JLabel();
 				getContentPane().add(lResources);
-				lResources.setText("Rescources:");
-				lResources.setBounds(12, 137, 125, 16);
+				lResources.setText("Resources");
+				lResources.setBounds(133, 158, 103, 16);
 			}
 			{
 				jSeparator2 = new JSeparator();
 				getContentPane().add(jSeparator2);
-				jSeparator2.setBounds(12, 127, 356, 10);
+				jSeparator2.setBounds(264, 6, 10, 236);
+				jSeparator2.setOrientation(SwingConstants.VERTICAL);
 			}
 			{
 				lUserID = new JLabel();
@@ -187,14 +179,13 @@ public class GuiApp2 extends javax.swing.JFrame {
 				lPassword = new JLabel();
 				getContentPane().add(lPassword);
 				lPassword.setText("Password");
-				lPassword.setBounds(124, 8, 100, 16);
+				lPassword.setBounds(12, 59, 100, 16);
 			}
 			{
 				bLogout = new JButton();
 				getContentPane().add(bLogout);
 				bLogout.setText("Logout");
-				bLogout.setBounds(242, 40, 86, 23);
-				bLogout.setSize(100, 23);
+				bLogout.setBounds(12, 155, 100, 23);
 				bLogout.setEnabled(false);
 				bLogout.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -205,36 +196,45 @@ public class GuiApp2 extends javax.swing.JFrame {
 			{
 				lRolle = new JLabel();
 				getContentPane().add(lRolle);
-				lRolle.setText("Rolle:");
-				lRolle.setBounds(12, 77, 100, 16);
+				lRolle.setText("Rolle");
+				lRolle.setBounds(135, 8, 100, 16);
 			}
 			{
 				lPermission = new JLabel();
 				getContentPane().add(lPermission);
 				lPermission.setText("Permission");
-				lPermission.setBounds(124, 78, 100, 16);
+				lPermission.setBounds(135, 59, 100, 16);
 			}
 			{
 				lLevel = new JLabel();
 				getContentPane().add(lLevel);
-				lLevel.setText("Level:");
-				lLevel.setBounds(236, 78, 100, 16);
+				lLevel.setText("Level");
+				lLevel.setBounds(133, 109, 100, 16);
 			}
 			{
 				bUpdateData = new JButton();
 				getContentPane().add(bUpdateData);
 				bUpdateData.setText("UpdateData");
 				bUpdateData.setEnabled(false);
-				bUpdateData.setBounds(12, 187, 100, 23);
+				bUpdateData.setBounds(12, 212, 100, 23);
 				bUpdateData.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						Actions.btnUpdate();
 					}
 				});
 			}
+			{
+				taRecources = new JTextArea();				
+				taRecources.setEditable(false);
+				JScrollPane sp = new JScrollPane(taRecources);
+				sp.setBounds(133, 180, 100, 55);
+				sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+				getContentPane().add(sp);
+			}
 			this.setFocusCycleRoot(false);
 			pack();
-			this.setSize(384, 261);
+			this.setSize(402, 281);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -289,8 +289,8 @@ public class GuiApp2 extends javax.swing.JFrame {
 	 *     
 	 * @return returns ComboBox Resources
 	 */
-	public static JComboBox<String> getCbResources() {
-		return cbRecources;
+	public static JTextArea getTaResources() {
+		return taRecources;
 	}
 
 	/**
@@ -372,7 +372,7 @@ public class GuiApp2 extends javax.swing.JFrame {
 		tfUserPassword.setText("");
 		bLogin.setEnabled(true);
 		bLogout.setEnabled(false);
-		cbRecources.removeAllItems();
+		taRecources.setText("");
 		tfUserName.setEditable(true);
 		tfUserPassword.setEditable(true);
 		GuiTest.getJBAddRes2().setEnabled(false);

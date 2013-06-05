@@ -167,7 +167,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 			{
 				lResources = new JLabel();
 				getContentPane().add(lResources);
-				lResources.setText("Rescources:");
+				lResources.setText("Resources");
 				lResources.setBounds(12, 137, 125, 16);
 			}
 			{
@@ -203,7 +203,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 			{
 				lRolle = new JLabel();
 				getContentPane().add(lRolle);
-				lRolle.setText("Rolle:");
+				lRolle.setText("Rolle");
 				lRolle.setBounds(12, 77, 100, 16);
 			}
 			{
@@ -215,7 +215,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 			{
 				lLevel = new JLabel();
 				getContentPane().add(lLevel);
-				lLevel.setText("Level:");
+				lLevel.setText("Level");
 				lLevel.setBounds(236, 78, 100, 16);
 			}
 			{

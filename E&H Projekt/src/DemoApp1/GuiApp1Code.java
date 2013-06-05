@@ -40,12 +40,8 @@ public class GuiApp1Code {
 						GuiTest.getJBAddRes1().setEnabled(true);
 					} 					
 				}
-			} else {
-				JOptionPane.showMessageDialog(null, "Login fehlgeschlagen!", "Fehler", JOptionPane.ERROR_MESSAGE);
-			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Keine Verbindung zur Datenbank!", "Fehler", JOptionPane.ERROR_MESSAGE);
-		}
+			} 
+		} 
 	}
 
 	/**

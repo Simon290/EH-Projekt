@@ -91,6 +91,8 @@ public class DBConnection {
 			}
 			result = new String[rowCnt][clmCnt];
 			rs = stmt.executeQuery(sqlStmt);
+			
+			
 
 			int r = 0;
 			while (rs.next()) {
@@ -137,12 +139,14 @@ public class DBConnection {
 	 * 
 	 * @return	True if DB exists. False if not.
 	 */
-	public static boolean checkDBConnection(){		
+	public static boolean checkDBConnection(){			
+		
 		File f = new File(path + "\\Database\\Rechteverwaltung.accdb");			
 		
 		if(f.exists()){			
 			return true;
 		} else{
+			connect();
 			return false;
 		}		
 	}

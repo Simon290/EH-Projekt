@@ -16,6 +16,7 @@ import javax.swing.WindowConstants;
 
 import Database.DBConnection;
 import DemoApp1.GuiApp1;
+import DemoApp2.GuiApp2;
 import RightAllocation.Main;
 
 /**
@@ -33,7 +34,7 @@ public class GuiTest extends javax.swing.JFrame {
 	private JButton jButtonShowCache;
 	private JButton jButtonDB;
 	private static JLabel jLabelDBStatus;
-	public static boolean toggle;	
+	public static boolean toggle;
 	private static JButton jBAddRes2;
 	private static JButton jBAddRes1;
 
@@ -108,16 +109,14 @@ public class GuiTest extends javax.swing.JFrame {
 		}
 	}
 
-	public static JButton getJBAddRes1(){
+	public static JButton getJBAddRes1() {
 		return jBAddRes1;
 	}
-	
+
 	public static JButton getJBAddRes2() {
 		return jBAddRes2;
 	}
-	
-	
-	
+
 	public static void showCache() {
 		int n = Main.m.size();
 		String[] keys = new String[n];
@@ -127,7 +126,7 @@ public class GuiTest extends javax.swing.JFrame {
 		sCache = "Anzahl Cacheobjekte: " + n + "\n\n";
 
 		for (int i = 0; i < keys.length; i++) {
-			
+
 			sCache = sCache + "Key: " + keys[i] + "\n\n";
 
 			String spaceUI = "                  ";
@@ -173,23 +172,33 @@ public class GuiTest extends javax.swing.JFrame {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	public static void toggleConnection(){
-		if(toggle != true){
+	public static void toggleConnection() {
+		if (toggle != true) {
 			toggle = true;
 			DBConnection.setPath("WrongPath");
 			jLabelDBStatus.setText("DB Status: disconnected");
-		} else{
+		} else {
 			toggle = false;
 			DBConnection.setPath(System.getProperty("user.dir"));
 			jLabelDBStatus.setText("DB Status: connected");
-		}		
-		
+		}
+
 	}
-	
-	public static void addResource(String appID){		
-		Main.EditCache(appID, GuiApp1.getTfUserName().getText());
-		JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!", "Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
+
+	public static void addResource(String appID) {
+		switch (appID) {
+		case "1":
+			Main.EditCache("1", GuiApp1.getTfUserName().getText());
+			JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!",
+					"Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case "2":
+			Main.EditCache("2", GuiApp2.getTfUserName().getText());
+			JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!",
+					"Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		}
+
 	}
-	
-	
+
 }

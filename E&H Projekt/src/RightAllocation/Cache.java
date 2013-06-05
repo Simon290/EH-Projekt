@@ -132,7 +132,7 @@ public class Cache {
 	 */
 	public void setResources(String[][] resources) {
 		try {
-			int lng = resources[0].length;
+			int lng = resources.length;
 			String[] res = new String[lng];
 
 			for (int i = 0; i < lng; i++) {
@@ -223,7 +223,7 @@ public class Cache {
 
 		DBConnection.disconnect();
 		
-
+		
 		setUserInfo(sqlResultUserInfo);
 		setAppInfo(sqlResultAppInfo);
 		setPermissions(sqlResultPermissions);

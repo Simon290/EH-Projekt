@@ -97,6 +97,8 @@ public class Main {
 
 		result = DBConnection.sqlQuery(SqlStmts
 				.generateValidatePasswordSqlStmt(userID, password));
+		
+		DBConnection.disconnect();
 
 		if (result.length == 0) {
 			passwordValid = false;
@@ -184,7 +186,7 @@ public class Main {
 	 * @return returns the Resources for current user
 	 */
 	public static String[] getRecources(String appID, String userID) {
-		String resources[];
+		String resources[];		
 		resources = m.get(appID + userID).getResources();
 		return resources;
 	}

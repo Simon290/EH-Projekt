@@ -1,11 +1,16 @@
 package DemoApp2;
 
 
+import java.awt.Dimension;
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Database.DBConnection;
+import DemoApp1.GuiApp1;
 import RightAllocation.Main;
 import Test.GuiTest;
 
@@ -38,15 +43,11 @@ public class GuiApp2Code {
 					if (Main.hasResources(appID, userID)) {						
 						setResources(appID, userID);
 						GuiApp2.getbUpdateData().setEnabled(true);
-						GuiTest.getJBAddRes2().setEnabled(true);
+						GuiTest.getJBAddRes1().setEnabled(true);
 					} 					
 				}
-			} else {
-				JOptionPane.showMessageDialog(null, "Login fehlgeschlagen!", "Fehler", JOptionPane.ERROR_MESSAGE);
-			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Keine Verbindung zur Datenbank!", "Fehler", JOptionPane.ERROR_MESSAGE);
-		}
+			} 
+		} 
 	}
 
 	/**
@@ -74,13 +75,12 @@ public class GuiApp2Code {
 	public static void setResources(String appID, String userID) {
 		String[] resources;
 		resources = Main.getRecources(appID, userID);
-
-		JComboBox<String> cbResources = GuiApp2.getCbResources();
-
-		cbResources.removeAllItems();
+		JTextArea taRes = GuiApp2.getTaResources();
+		String s = "";
 		for (int i = 0; i < resources.length; i++) {
-			cbResources.addItem(resources[i]);
+			s = s + resources[i] + "\n";			
 		}
+		taRes.setText(s);
 	}
 
 	/**
