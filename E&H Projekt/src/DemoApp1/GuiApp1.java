@@ -373,7 +373,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		cbRecources.removeAllItems();
 		tfUserName.setEditable(true);
 		tfUserPassword.setEditable(true);
-		GuiTest.getBEditCache().setEnabled(false);
+		GuiTest.getJBAddRes1().setEnabled(false);
 	}
 	
 	

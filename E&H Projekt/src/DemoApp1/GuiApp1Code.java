@@ -37,7 +37,7 @@ public class GuiApp1Code {
 					if (Main.hasResources(appID, userID)) {						
 						setResources(appID, userID);
 						GuiApp1.getbUpdateData().setEnabled(true);
-						GuiTest.getBEditCache().setEnabled(true);
+						GuiTest.getJBAddRes1().setEnabled(true);
 					} 					
 				}
 			} else {

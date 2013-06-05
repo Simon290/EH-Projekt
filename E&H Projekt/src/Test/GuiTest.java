@@ -3,8 +3,11 @@ package Test;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -30,9 +33,9 @@ public class GuiTest extends javax.swing.JFrame {
 	private JButton jButtonShowCache;
 	private JButton jButtonDB;
 	private static JLabel jLabelDBStatus;
-	
-	public static boolean toggle;
-	private static JButton jButtonEditCache;
+	public static boolean toggle;	
+	private static JButton jBAddRes2;
+	private static JButton jBAddRes1;
 
 	public GuiTest() {
 		super();
@@ -43,7 +46,7 @@ public class GuiTest extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			pack();
-			this.setSize(256, 183);
+			this.setSize(256, 217);
 			this.setLocation(new java.awt.Point(0, 0));
 			getContentPane().setLayout(null);
 			this.setTitle("Test");
@@ -63,7 +66,7 @@ public class GuiTest extends javax.swing.JFrame {
 				jButtonDB = new JButton();
 				getContentPane().add(jButtonDB);
 				jButtonDB.setText("DB disconnect/connect");
-				jButtonDB.setBounds(12, 82, 216, 23);
+				jButtonDB.setBounds(12, 116, 216, 23);
 				jButtonDB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						toggleConnection();
@@ -74,17 +77,29 @@ public class GuiTest extends javax.swing.JFrame {
 				jLabelDBStatus = new JLabel();
 				getContentPane().add(jLabelDBStatus);
 				jLabelDBStatus.setText("DB Status: connectet");
-				jLabelDBStatus.setBounds(12, 116, 215, 16);
+				jLabelDBStatus.setBounds(12, 150, 215, 16);
 			}
 			{
-				jButtonEditCache = new JButton();
-				getContentPane().add(jButtonEditCache);
-				jButtonEditCache.setText("Add resource");
-				jButtonEditCache.setBounds(12, 48, 216, 23);
-				jButtonEditCache.setEnabled(false);
-				jButtonEditCache.addActionListener(new ActionListener() {
+				jBAddRes1 = new JButton();
+				getContentPane().add(jBAddRes1);
+				jBAddRes1.setText("Add resource app1");
+				jBAddRes1.setBounds(12, 48, 216, 23);
+				jBAddRes1.setEnabled(false);
+				jBAddRes1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						editCache();
+						addResource("1");
+					}
+				});
+			}
+			{
+				jBAddRes2 = new JButton();
+				getContentPane().add(jBAddRes2);
+				jBAddRes2.setText("Add resource app2");
+				jBAddRes2.setBounds(12, 82, 216, 23);
+				jBAddRes2.setEnabled(false);
+				jBAddRes2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						addResource("2");
 					}
 				});
 			}
@@ -93,9 +108,15 @@ public class GuiTest extends javax.swing.JFrame {
 		}
 	}
 
-	public static JButton getBEditCache(){
-		return jButtonEditCache;
+	public static JButton getJBAddRes1(){
+		return jBAddRes1;
 	}
+	
+	public static JButton getJBAddRes2() {
+		return jBAddRes2;
+	}
+	
+	
 	
 	public static void showCache() {
 		int n = Main.m.size();
@@ -165,8 +186,10 @@ public class GuiTest extends javax.swing.JFrame {
 		
 	}
 	
-	public static void editCache(){
-		Main.EditCache("1", GuiApp1.getTfUserName().getText());
+	public static void addResource(String appID){		
+		Main.EditCache(appID, GuiApp1.getTfUserName().getText());
 		JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!", "Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	
 }

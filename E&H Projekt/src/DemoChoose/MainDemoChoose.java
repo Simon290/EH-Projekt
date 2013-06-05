@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 import Test.GuiTest;
 
 import DemoApp1.GuiApp1;
-import DemoApp2.DemoFrame2;
+import DemoApp2.GuiApp2;
 
 public class MainDemoChoose {
 
@@ -51,7 +51,7 @@ public class MainDemoChoose {
 	static void startDemo2() {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				DemoFrame2 inst = new DemoFrame2();
+				GuiApp2 inst = new GuiApp2();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
