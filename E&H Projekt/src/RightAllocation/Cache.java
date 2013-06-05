@@ -186,7 +186,7 @@ public class Cache {
 		} catch (Exception e) {
 			// no role available
 		}
-		
+
 	}
 
 	/**
@@ -222,8 +222,7 @@ public class Cache {
 				.generateSelectFromViewSqlStmt(appID, userID, "RoleName"));
 
 		DBConnection.disconnect();
-		
-		
+
 		setUserInfo(sqlResultUserInfo);
 		setAppInfo(sqlResultAppInfo);
 		setPermissions(sqlResultPermissions);

@@ -19,7 +19,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Dictionary;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -91,8 +90,6 @@ public class DBConnection {
 			}
 			result = new String[rowCnt][clmCnt];
 			rs = stmt.executeQuery(sqlStmt);
-			
-			
 
 			int r = 0;
 			while (rs.next()) {
@@ -111,8 +108,10 @@ public class DBConnection {
 	 * Handles the different errors. Shows an info dialog, with a short
 	 * description of the error and option to show the hole errormessage.
 	 * 
-	 * @param ex	the occurred error
-	 * @param dialogText	Short description of the error
+	 * @param ex
+	 *            the occurred error
+	 * @param dialogText
+	 *            Short description of the error
 	 */
 	public static void errorHandling(Exception ex, String dialogText) {
 		String[] buttons = { "OK", "Details" };
@@ -133,30 +132,31 @@ public class DBConnection {
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
-	
+
 	/**
 	 * Checks existence of the DB.
 	 * 
-	 * @return	True if DB exists. False if not.
+	 * @return True if DB exists. False if not.
 	 */
-	public static boolean checkDBConnection(){			
-		
-		File f = new File(path + "\\Database\\Rechteverwaltung.accdb");			
-		
-		if(f.exists()){			
+	public static boolean checkDBConnection() {
+
+		File f = new File(path + "\\Database\\Rechteverwaltung.accdb");
+
+		if (f.exists()) {
 			return true;
-		} else{
+		} else {
 			connect();
 			return false;
-		}		
+		}
 	}
-	
+
 	/**
 	 * Just for testing. Sets the path to the database.
 	 * 
-	 * @param p	the new Path
+	 * @param p
+	 *            the new Path
 	 */
-	public static void setPath(String p){
+	public static void setPath(String p) {
 		path = p;
 	}
 }

@@ -10,7 +10,8 @@ import DemoApp2.GuiApp2;
 public class MainDemoChoose {
 
 	/**
-	 * Starts the test Gui, and starts the Demo Application, if a Button is pressed
+	 * Starts the test Gui, and starts the Demo Application, if a Button is
+	 * pressed
 	 * 
 	 * @param args
 	 */
@@ -22,7 +23,7 @@ public class MainDemoChoose {
 				inst.setVisible(true);
 			}
 		});
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				GuiTest inst = new GuiTest();
@@ -31,7 +32,6 @@ public class MainDemoChoose {
 		});
 	}
 
-	
 	/**
 	 * Starts the Demo App 1 in the middle of the screen
 	 */

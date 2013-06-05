@@ -3,11 +3,8 @@ package Test;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -145,12 +142,13 @@ public class GuiTest extends javax.swing.JFrame {
 			}
 			sCache = sCache + "Appinfo: " + appinfo + "\n";
 
-			sCache = sCache + "Rolle: " + Main.m.get(keys[i]).getRole() + "\n";
+			sCache = sCache + "Rolle: " + Main.m.get(keys[i]).getRole()
+					+ "\n\n";
 
 			sCache = sCache + "Recht: "
-					+ Main.m.get(keys[i]).getPermissions()[0] + "\n";
+					+ Main.m.get(keys[i]).getPermissions()[0] + "\n\n";
 
-			String spaceRE = "                     ";
+			String spaceRE = "                         ";
 			String resources = "";
 			for (int re = 0; re < Main.m.get(keys[i]).getResources().length; re++) {
 				resources = resources + Main.m.get(keys[i]).getResources()[re]

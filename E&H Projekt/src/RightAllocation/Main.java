@@ -14,7 +14,6 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 
 import Database.DBConnection;
-import DemoApp1.GuiApp1Code;
 
 /*
  *  Just for tests and development
@@ -27,11 +26,11 @@ public class Main {
 	 * Check the password and the username in the database. sends it to Database
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
 	 *            The ID of the current User
 	 * @param password
-	 *            The password, which should be validated         
+	 *            The password, which should be validated
 	 * @return returns weather the password was correct or not
 	 */
 	public static boolean checkPassword(String appID, String userID,
@@ -39,43 +38,51 @@ public class Main {
 		if (checkUserPassword(userID, password)) {
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null, "Passwort oder Username falsch oder nicht vorhanden!", "Loginfehler ", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"Passwort oder Username falsch oder nicht vorhanden!",
+					"Loginfehler ", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
 
 	/**
-	 * Check in the database weather the user has Roles for the current Application
+	 * Check in the database weather the user has Roles for the current
+	 * Application
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns weather the User has a Role in this Application
 	 */
 	public static boolean hasRole(String appID, String userID) {
 		if (checkUserRoleAppPair(appID, userID)) {
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null, "Keine Rolle für diese Application vorhanden!", "Keine Rolle", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"Keine Rolle für diese Application vorhanden!",
+					"Keine Rolle", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
-	
+
 	/**
-	 * Check in the database weather the user has Resources for the current Application
+	 * Check in the database weather the user has Resources for the current
+	 * Application
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns weather the User has resources in this Application
 	 */
 	public static boolean hasResources(String appID, String userID) {
 		if (checkUserResourceAppPair(appID, userID)) {
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null, "Keine Ressourcen für diese Application vorhanden!", "Keine Ressource", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"Keine Ressourcen für diese Application vorhanden!",
+					"Keine Ressource", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
@@ -84,9 +91,9 @@ public class Main {
 	 * Check in the database weather the for the current user is correct
 	 * 
 	 * @param userID
-	 *            The ID of the current User  
+	 *            The ID of the current User
 	 * @param password
-	 *            The password of the current User      
+	 *            The password of the current User
 	 * @return returns weather the password is correct
 	 */
 	static boolean checkUserPassword(String userID, String password) {
@@ -97,7 +104,7 @@ public class Main {
 
 		result = DBConnection.sqlQuery(SqlStmts
 				.generateValidatePasswordSqlStmt(userID, password));
-		
+
 		DBConnection.disconnect();
 
 		if (result.length == 0) {
@@ -109,12 +116,13 @@ public class Main {
 	}
 
 	/**
-	 * Check in the database weather the user has Role for the current Application
+	 * Check in the database weather the user has Role for the current
+	 * Application
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns weather the User has Role in this Application
 	 */
 	static boolean checkUserRoleAppPair(String appID, String userID) {
@@ -135,12 +143,13 @@ public class Main {
 	}
 
 	/**
-	 * Check in the database weather the user has Resources for the current Application
+	 * Check in the database weather the user has Resources for the current
+	 * Application
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns weather the User has resources in this Application
 	 */
 	static boolean checkUserResourceAppPair(String appID, String userID) {
@@ -165,9 +174,9 @@ public class Main {
 	 * Reads the Permissions from Cache
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns the Permissions for current user
 	 */
 	public static String[] getPermission(String appID, String userID) {
@@ -180,13 +189,13 @@ public class Main {
 	 * Reads the Resources from Cache
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns the Resources for current user
 	 */
 	public static String[] getRecources(String appID, String userID) {
-		String resources[];		
+		String resources[];
 		resources = m.get(appID + userID).getResources();
 		return resources;
 	}
@@ -195,9 +204,9 @@ public class Main {
 	 * Reads the Role from Cache
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 * @return returns the Role for current user
 	 */
 	public static String getRole(String appID, String userID) {
@@ -210,9 +219,9 @@ public class Main {
 	 * Saves all available Data for current User and current Application
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
+	 *            The ID of the current User
 	 */
 	public static void loadData(String appID, String userID) {
 		m.put(appID + userID, new Cache());
@@ -220,37 +229,38 @@ public class Main {
 	}
 
 	/**
-	 * Deletes reference on the Cache Object, so the Garbage Collector will delete it
+	 * Deletes reference on the Cache Object, so the Garbage Collector will
+	 * delete it
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
-	 */	
+	 *            The ID of the current User
+	 */
 	public static void deleteData(String appID, String userID) {
 		m.remove(appID + userID);
 	}
-	
+
 	/**
 	 * Just for testing. Edits the Cache of current User.
 	 * 
 	 * @param appID
-	 *            The ID of the current App  
+	 *            The ID of the current App
 	 * @param userID
-	 *            The ID of the current User      
-	 */	
-	public static void EditCache(String appID, String userID) {		
-		
+	 *            The ID of the current User
+	 */
+	public static void EditCache(String appID, String userID) {
+
 		String[] oldRes = m.get(appID + userID).getResources();
 		String[][] newRes = new String[oldRes.length + 1][oldRes.length + 1];
-		
-		for (int i = 0; i < oldRes.length; i++){
+
+		for (int i = 0; i < oldRes.length; i++) {
 			newRes[i][0] = oldRes[i];
 			newRes[0][i] = oldRes[i];
-		}		
-		
+		}
+
 		newRes[oldRes.length][0] = "Neu";
-		
+
 		m.get(appID + userID).getResources();
 		m.get(appID + userID).setResources(newRes);
 	}

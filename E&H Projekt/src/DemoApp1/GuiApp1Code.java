@@ -11,7 +11,7 @@ import Test.GuiTest;
 public class GuiApp1Code {
 
 	/**
-	 * This Method is called, when the Login Button is pressed. 
+	 * This Method is called, when the Login Button is pressed.
 	 * 
 	 * @param appID
 	 *            The AppID of the current Application
@@ -25,7 +25,8 @@ public class GuiApp1Code {
 	public static void Login(String appID, String userID, String password) {
 		if (DBConnection.checkDBConnection()) {
 			if (Main.checkPassword(appID, userID, password)) {
-				JOptionPane.showMessageDialog(null, "Login erfolgreich!", "", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Login erfolgreich!", "",
+						JOptionPane.INFORMATION_MESSAGE);
 				GuiApp1.getbLogin().setEnabled(false);
 				GuiApp1.getbLogout().setEnabled(true);
 				GuiApp1.getTfUserName().setEditable(false);
@@ -34,14 +35,14 @@ public class GuiApp1Code {
 				if (Main.hasRole(appID, userID)) {
 					setRole(appID, userID);
 					setPermissions(appID, userID);
-					if (Main.hasResources(appID, userID)) {						
+					if (Main.hasResources(appID, userID)) {
 						setResources(appID, userID);
 						GuiApp1.getbUpdateData().setEnabled(true);
 						GuiTest.getJBAddRes1().setEnabled(true);
-					} 					
+					}
 				}
-			} 
-		} 
+			}
+		}
 	}
 
 	/**

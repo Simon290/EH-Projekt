@@ -5,6 +5,8 @@ package DemoApp1;
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -64,13 +66,19 @@ public class GuiApp1 extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Method initializes the Gui, sets all Buttons and creates the event Handlers.
+	 * Method initializes the Gui, sets all Buttons and creates the event
+	 * Handlers.
 	 */
 	private void initGUI() {
 		try {
 			this.setTitle("Application 1");
 			this.setResizable(false);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			this.addWindowListener(new WindowAdapter() {
+				public void windowClosing(WindowEvent e) {
+					Actions.btnLogout();
+				}
+			});
 			getContentPane().setLayout(null);
 			this.setFocusableWindowState(true);
 			{
@@ -155,7 +163,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 				getContentPane().add(bUpdate);
 				bUpdate.setText("Update");
 				bUpdate.setBounds(260, 158, 100, 23);
-				bUpdate.setEnabled(false);		
+				bUpdate.setEnabled(false);
 			}
 			{
 				bDelete = new JButton();
@@ -203,7 +211,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 			{
 				lRolle = new JLabel();
 				getContentPane().add(lRolle);
-				lRolle.setText("Rolle");
+				lRolle.setText("Role");
 				lRolle.setBounds(12, 77, 100, 16);
 			}
 			{
@@ -237,9 +245,10 @@ public class GuiApp1 extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * Check weather the Login is done
-	 *    
+	 * 
 	 * @return returns weather the login is done
 	 */
 	public static JButton getbLogin() {
@@ -248,7 +257,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the Username from Textfield
-	 *    
+	 * 
 	 * @return returns Username
 	 */
 	public static JTextField getTfUserName() {
@@ -257,7 +266,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the Password from Textfield
-	 *    
+	 * 
 	 * @return returns Password
 	 */
 	public static JTextField getTfUserPassword() {
@@ -266,7 +275,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the Textfield Permissions
-	 *     
+	 * 
 	 * @return returns Textfield Permissions
 	 */
 	public static JTextField getTfPermissions() {
@@ -275,7 +284,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the Textfield Role
-	 *     
+	 * 
 	 * @return returns Textfield Role
 	 */
 	public static JTextField getTfRole() {
@@ -284,7 +293,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the ComboBox Resources
-	 *     
+	 * 
 	 * @return returns ComboBox Resources
 	 */
 	public static JComboBox<String> getCbResources() {
@@ -293,7 +302,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the JButton Read
-	 *     
+	 * 
 	 * @return returns JButton Read
 	 */
 	public static JButton getbRead() {
@@ -302,7 +311,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the JButton Write
-	 *     
+	 * 
 	 * @return returns JButton Write
 	 */
 	public static JButton getbWrite() {
@@ -311,7 +320,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the JButton Update
-	 *     
+	 * 
 	 * @return returns JButton Update
 	 */
 	public static JButton getbUpdate() {
@@ -320,7 +329,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the JButton Delete
-	 *     
+	 * 
 	 * @return returns JButton Delete
 	 */
 	public static JButton getbDelete() {
@@ -329,16 +338,16 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the JButton Logout
-	 *     
+	 * 
 	 * @return returns JButton Logout
 	 */
 	public static JButton getbLogout() {
 		return bLogout;
 	}
-	
+
 	/**
 	 * Get the JButton UpdateData
-	 *     
+	 * 
 	 * @return returns JButton UpdateData
 	 */
 	public static JButton getbUpdateData() {
@@ -347,13 +356,13 @@ public class GuiApp1 extends javax.swing.JFrame {
 
 	/**
 	 * Get the TextField Level
-	 *     
+	 * 
 	 * @return returns textField Level
 	 */
 	public static JTextField getTfLevel() {
 		return tfLevel;
 	}
-	
+
 	/**
 	 * Sets all Components in Gui back to the Default Values
 	 */
@@ -375,8 +384,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 		tfUserPassword.setEditable(true);
 		GuiTest.getJBAddRes1().setEnabled(false);
 	}
-	
-	
+
 	public static class Actions {
 		/**
 		 * Action listener for Login Button
@@ -394,7 +402,7 @@ public class GuiApp1 extends javax.swing.JFrame {
 			String userName = tfUserName.getText();
 			GuiApp1Code.Logout(appID, userName);
 		}
-		
+
 		/**
 		 * Action Listener for Logout Button
 		 */

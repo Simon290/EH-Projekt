@@ -1,23 +1,17 @@
 package DemoApp2;
 
-
-import java.awt.Dimension;
-
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Database.DBConnection;
-import DemoApp1.GuiApp1;
 import RightAllocation.Main;
 import Test.GuiTest;
 
 public class GuiApp2Code {
 
 	/**
-	 * This Method is called, when the Login Button is pressed. 
+	 * This Method is called, when the Login Button is pressed.
 	 * 
 	 * @param appID
 	 *            The AppID of the current Application
@@ -31,7 +25,8 @@ public class GuiApp2Code {
 	public static void Login(String appID, String userID, String password) {
 		if (DBConnection.checkDBConnection()) {
 			if (Main.checkPassword(appID, userID, password)) {
-				JOptionPane.showMessageDialog(null, "Login erfolgreich!", "", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Login erfolgreich!", "",
+						JOptionPane.INFORMATION_MESSAGE);
 				GuiApp2.getbLogin().setEnabled(false);
 				GuiApp2.getbLogout().setEnabled(true);
 				GuiApp2.getTfUserName().setEditable(false);
@@ -40,14 +35,14 @@ public class GuiApp2Code {
 				if (Main.hasRole(appID, userID)) {
 					setRole(appID, userID);
 					setPermissions(appID, userID);
-					if (Main.hasResources(appID, userID)) {						
+					if (Main.hasResources(appID, userID)) {
 						setResources(appID, userID);
 						GuiApp2.getbUpdateData().setEnabled(true);
-						GuiTest.getJBAddRes1().setEnabled(true);
-					} 					
+						GuiTest.getJBAddRes2().setEnabled(true);
+					}
 				}
-			} 
-		} 
+			}
+		}
 	}
 
 	/**
@@ -78,7 +73,7 @@ public class GuiApp2Code {
 		JTextArea taRes = GuiApp2.getTaResources();
 		String s = "";
 		for (int i = 0; i < resources.length; i++) {
-			s = s + resources[i] + "\n";			
+			s = s + resources[i] + "\n";
 		}
 		taRes.setText(s);
 	}
