@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import Database.DBConnection;
@@ -32,6 +34,7 @@ public class GuiTest extends javax.swing.JFrame {
 	private JButton jButtonDB;
 	private static JLabel jLabelDBStatus;
 	public static boolean toggle;
+	private static JTextField jTfAddRes;
 	private static JButton jBAddRes2;
 	private static JButton jBAddRes1;
 
@@ -44,7 +47,7 @@ public class GuiTest extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			pack();
-			this.setSize(256, 217);
+			this.setSize(251, 254);
 			this.setLocation(new java.awt.Point(0, 0));
 			getContentPane().setLayout(null);
 			this.setTitle("Test");
@@ -64,7 +67,7 @@ public class GuiTest extends javax.swing.JFrame {
 				jButtonDB = new JButton();
 				getContentPane().add(jButtonDB);
 				jButtonDB.setText("DB disconnect/connect");
-				jButtonDB.setBounds(12, 116, 216, 23);
+				jButtonDB.setBounds(12, 153, 216, 23);
 				jButtonDB.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						toggleConnection();
@@ -75,13 +78,17 @@ public class GuiTest extends javax.swing.JFrame {
 				jLabelDBStatus = new JLabel();
 				getContentPane().add(jLabelDBStatus);
 				jLabelDBStatus.setText("DB Status: connectet");
-				jLabelDBStatus.setBounds(12, 150, 215, 16);
+				jLabelDBStatus.setBounds(12, 187, 215, 16);
+				jLabelDBStatus.setHorizontalAlignment(SwingConstants.CENTER);
+				jLabelDBStatus.setHorizontalTextPosition(SwingConstants.CENTER);
+				jLabelDBStatus.setForeground(new java.awt.Color(0, 128, 0));
+				jLabelDBStatus.setFont(new java.awt.Font("Segoe UI", 1, 14));
 			}
 			{
 				jBAddRes1 = new JButton();
 				getContentPane().add(jBAddRes1);
 				jBAddRes1.setText("Add resource app1");
-				jBAddRes1.setBounds(12, 48, 216, 23);
+				jBAddRes1.setBounds(12, 85, 216, 23);
 				jBAddRes1.setEnabled(false);
 				jBAddRes1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -93,13 +100,18 @@ public class GuiTest extends javax.swing.JFrame {
 				jBAddRes2 = new JButton();
 				getContentPane().add(jBAddRes2);
 				jBAddRes2.setText("Add resource app2");
-				jBAddRes2.setBounds(12, 82, 216, 23);
+				jBAddRes2.setBounds(12, 119, 216, 23);
 				jBAddRes2.setEnabled(false);
 				jBAddRes2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						addResource("2");
 					}
 				});
+			}
+			{
+				jTfAddRes = new JTextField();
+				getContentPane().add(getJTfAddRes());
+				jTfAddRes.setBounds(12, 50, 216, 23);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,6 +124,10 @@ public class GuiTest extends javax.swing.JFrame {
 
 	public static JButton getJBAddRes2() {
 		return jBAddRes2;
+	}
+
+	public static JTextField getJTfAddRes() {
+		return jTfAddRes;
 	}
 
 	public static void showCache() {
@@ -175,10 +191,12 @@ public class GuiTest extends javax.swing.JFrame {
 			toggle = true;
 			DBConnection.setPath("WrongPath");
 			jLabelDBStatus.setText("DB Status: disconnected");
+			jLabelDBStatus.setForeground(new java.awt.Color(255, 0, 0));
 		} else {
 			toggle = false;
 			DBConnection.setPath(System.getProperty("user.dir"));
 			jLabelDBStatus.setText("DB Status: connected");
+			jLabelDBStatus.setForeground(new java.awt.Color(0, 128, 0));
 		}
 
 	}

@@ -234,7 +234,7 @@ public class GuiApp2 extends javax.swing.JFrame {
 				taRecources.setEditable(false);
 				JScrollPane sp = new JScrollPane(taRecources);
 				sp.setBounds(133, 180, 100, 55);
-				sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 				sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 				getContentPane().add(sp);
 			}
@@ -373,7 +373,7 @@ public class GuiApp2 extends javax.swing.JFrame {
 		bDelete.setEnabled(false);
 		bUpdateData.setEnabled(false);
 		tfPermissions.setText("Permissions");
-		tfRole.setText("Rolle");
+		tfRole.setText("Role");
 		tfLevel.setText("Level");
 		tfUserName.setText("");
 		tfUserPassword.setText("");

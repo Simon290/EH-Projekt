@@ -13,6 +13,8 @@ import java.util.Map;
 
 import javax.swing.JOptionPane;
 
+import Test.GuiTest;
+
 import Database.DBConnection;
 
 /*
@@ -259,7 +261,11 @@ public class Main {
 			newRes[0][i] = oldRes[i];
 		}
 
-		newRes[oldRes.length][0] = "Neu";
+		if (GuiTest.getJTfAddRes().getText().trim().equals("")) {
+			newRes[oldRes.length][0] = "New";
+		} else {
+			newRes[oldRes.length][0] = GuiTest.getJTfAddRes().getText().trim();
+		}
 
 		m.get(appID + userID).getResources();
 		m.get(appID + userID).setResources(newRes);
