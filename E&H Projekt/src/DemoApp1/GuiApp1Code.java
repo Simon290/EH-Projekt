@@ -11,7 +11,7 @@ import Test.GuiTest;
 public class GuiApp1Code {
 
 	/**
-	 * This Method is called, when the Login Button is pressed
+	 * This Method is called, when the Login Button is pressed. 
 	 * 
 	 * @param appID
 	 *            The AppID of the current Application
@@ -38,7 +38,7 @@ public class GuiApp1Code {
 						setResources(appID, userID);
 						GuiApp1.getbUpdateData().setEnabled(true);
 						GuiTest.getBEditCache().setEnabled(true);
-					}
+					} 					
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Login fehlgeschlagen!", "Fehler", JOptionPane.ERROR_MESSAGE);

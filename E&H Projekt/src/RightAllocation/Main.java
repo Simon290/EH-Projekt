@@ -151,7 +151,7 @@ public class Main {
 
 		DBConnection.disconnect();
 
-		if (resultResource.length == 0) {
+		if (resultResource[0][0].equals("0")) {
 			return false;
 		} else {
 			return true;

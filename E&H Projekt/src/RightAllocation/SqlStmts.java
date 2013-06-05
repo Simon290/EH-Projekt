@@ -78,7 +78,7 @@ public class SqlStmts {
 	 * @return Returns a String with the SQL statement.
 	 */
 	static String generateCheckResourceExistenceSQLStmt(String appID, String userID) {
-		String sql = "SELECT User_ID, App_ID" 
+		String sql = "SELECT Resource_ID" 
 					+ " FROM UserResources" 
 					+ " WHERE App_ID LIKE '"	+ appID + "' AND User_ID LIKE '" + userID + "';";
 		return sql;
