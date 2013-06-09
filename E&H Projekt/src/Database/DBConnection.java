@@ -1,13 +1,10 @@
-/*
- * @author Pascal
- * @version 2.03
+/**
+ * @author Pascal Grunau, Simon Riedinger, Sarah Weinbecker, Anika Rist. Sebastian Abb
+ * @version 1.0
  */
 
 package Database;
 
-/*
- * imports
- */
 import java.awt.Dimension;
 import java.io.File;
 import java.io.PrintWriter;
@@ -24,14 +21,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-/*
- *  Manage the connection to the database. Also interpret the SQL statement.
+/**
+ *  Manages the connection to the database. Also interprets the SQL statement.
  */
 public class DBConnection {
 
-	/*
-	 * Static attributes needed for the database connection.
-	 */
 	private static Connection con;
 	private static Statement stmt;
 	private static ResultSet rs;
@@ -50,14 +44,15 @@ public class DBConnection {
 		try {
 			con = DriverManager
 					.getConnection("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
-							+ path + "\\Database\\Rechteverwaltung.accdb");
+							+ path + "\\Data\\Rechteverwaltung.accdb");
+				
 		} catch (SQLException e) {
 			errorHandling(e, "Fehler bei Verbindungsaufbau zur Datenbank!");
 		}
 	}
 
 	/**
-	 * Disconnecting the database.
+	 * Disconnects the database.
 	 */
 	public static void disconnect() {
 		try {
@@ -106,12 +101,12 @@ public class DBConnection {
 
 	/**
 	 * Handles the different errors. Shows an info dialog, with a short
-	 * description of the error and option to show the hole errormessage.
+	 * description of the error and the option to show the whole errormessage.
 	 * 
 	 * @param ex
-	 *            the occurred error
+	 *            the occurred error.
 	 * @param dialogText
-	 *            Short description of the error
+	 *            Short description of the error.
 	 */
 	public static void errorHandling(Exception ex, String dialogText) {
 		String[] buttons = { "OK", "Details" };
@@ -139,8 +134,7 @@ public class DBConnection {
 	 * @return True if DB exists. False if not.
 	 */
 	public static boolean checkDBConnection() {
-
-		File f = new File(path + "\\Database\\Rechteverwaltung.accdb");
+		File f = new File(path + "\\Data\\Rechteverwaltung.accdb");
 
 		if (f.exists()) {
 			return true;

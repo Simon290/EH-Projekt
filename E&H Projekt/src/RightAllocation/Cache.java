@@ -1,3 +1,8 @@
+/**
+ * @author Pascal Grunau, Simon Riedinger, Sarah Weinbecker, Anika Rist, Sebastian Abb
+ * @version 1.0
+ */
+
 package RightAllocation;
 
 import java.text.DateFormat;
@@ -7,11 +12,12 @@ import java.util.TimeZone;
 
 import Database.DBConnection;
 
-public class Cache {
 
-	/*
-	 * Attributes
-	 */
+/**
+ * Stores the information of a logged-in user locally.
+ */
+public class Cache {
+	
 	private String[] userInfo;
 	private String[] appInfo;
 	private String role;
@@ -20,23 +26,23 @@ public class Cache {
 	private String timeStamp;
 
 	/**
-	 * Constructor: Generates a cache object with the current time as timestamp.
+	 * Constructor: Generates a cache object with the current time as time stamp.
 	 */
 	public Cache() {
 		timeStamp = getCurrentTimeAsString();
 	}
 
 	/**
-	 * Returns an array of strings with the userinfo.
+	 * Returns an array of strings with the user info.
 	 * 
-	 * @return returns userinfo.
+	 * @return Returns user info.
 	 */
 	public String[] getUserInfo() {
 		return userInfo;
 	}
 
 	/**
-	 * Sets the userinfo.
+	 * Sets the user info.
 	 * 
 	 * @param userInfo
 	 */
@@ -51,22 +57,22 @@ public class Cache {
 
 			this.userInfo = userinf;
 		} catch (Exception e) {
-			// no userinfo available
+			// no user info available
 		}
 
 	}
 
 	/**
-	 * Returns an array of strings with the appinfo.
+	 * Returns an array of strings with the application info.
 	 * 
-	 * @return returns userinfo.
+	 * @return Returns application info.
 	 */
 	public String[] getAppInfo() {
 		return appInfo;
 	}
 
 	/**
-	 * Sets the appinfo.
+	 * Sets the application info.
 	 * 
 	 * @param appInfo
 	 */
@@ -81,22 +87,22 @@ public class Cache {
 
 			this.appInfo = appinf;
 		} catch (Exception e) {
-			// no appinfo available
+			// no application info available
 		}
 
 	}
 
 	/**
-	 * Returns an array of strings with the rights.
+	 * Returns an array of strings with the permissions.
 	 * 
-	 * @return returns rights.
+	 * @return Returns the permissions.
 	 */
 	public String[] getPermissions() {
 		return permissions;
 	}
 
 	/**
-	 * Sets the rights.
+	 * Sets the permissions.
 	 * 
 	 * @param permissions
 	 */
@@ -119,7 +125,7 @@ public class Cache {
 	/**
 	 * Returns an array of strings with the resources.
 	 * 
-	 * @return returns resources.
+	 * @return Returns resources.
 	 */
 	public String[] getResources() {
 		return resources;
@@ -147,17 +153,17 @@ public class Cache {
 	}
 
 	/**
-	 * Returns a strings with the timestamp of the object, set by creating the
+	 * Returns a string with the time stamp of the object, set by creating the
 	 * object.
 	 * 
-	 * @return returns timestamp.
+	 * @return Returns the time stamp.
 	 */
 	public String getTimeStamp() {
 		return timeStamp;
 	}
 
 	/**
-	 * Sets the timestamp.
+	 * Sets the time stamp.
 	 * 
 	 * @param timeStamp
 	 */
@@ -166,10 +172,9 @@ public class Cache {
 	}
 
 	/**
-	 * Returns a strings with the role of the object, set by creating the
-	 * object.
+	 * Returns a string with the role of the object.
 	 * 
-	 * @return returns role.
+	 * @return Returns the role.
 	 */
 	public String getRole() {
 		return role;
@@ -190,8 +195,8 @@ public class Cache {
 	}
 
 	/**
-	 * Loads the data for the user app pair from the database into the
-	 * cache-object of the user app pair.
+	 * Loads the data for the user-app-pair from the database into the
+	 * cache-object of the user-app-pair.
 	 * 
 	 * @param appID
 	 *            The appID from a specific application.
@@ -231,9 +236,9 @@ public class Cache {
 	}
 
 	/**
-	 * Returns a string with the current timestamp. Format: dd.MM.yyyy HH:mm:ss
+	 * Returns a string with the current time stamp. Format: dd.MM.yyyy HH:mm:ss
 	 * 
-	 * @return returns timestamp.
+	 * @return Returns the current time stamp.
 	 */
 	static private String getCurrentTimeAsString() {
 		DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");

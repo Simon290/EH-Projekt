@@ -1,3 +1,8 @@
+/**
+ * @author Pascal Grunau, Simon Riedinger, Sarah Weinbecker, Anika Rist, Sebastian Abb
+ * @version 1.0
+ */
+
 package Test;
 
 import java.awt.Dimension;
@@ -14,20 +19,10 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import Database.DBConnection;
-import DemoApp1.GuiApp1;
-import DemoApp2.GuiApp2;
-import RightAllocation.Main;
+import DemoApp1.DemoApp1;
+import DemoApp2.DemoApp2;
+import RightAllocation.MainClass;
 
-/**
- * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
- * Builder, which is free for non-commercial use. If Jigloo is being used
- * commercially (ie, by a corporation, company or business for any purpose
- * whatever) then you should purchase a license for each developer using Jigloo.
- * Please visit www.cloudgarden.com for details. Use of Jigloo implies
- * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
- * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
- * ANY CORPORATE OR COMMERCIAL PURPOSE.
- */
 @SuppressWarnings("serial")
 public class GuiTest extends javax.swing.JFrame {
 	private JButton jButtonShowCache;
@@ -131,9 +126,9 @@ public class GuiTest extends javax.swing.JFrame {
 	}
 
 	public static void showCache() {
-		int n = Main.m.size();
+		int n = MainClass.m.size();
 		String[] keys = new String[n];
-		Main.m.keySet().toArray(keys);
+		MainClass.m.keySet().toArray(keys);
 		String sCache;
 
 		sCache = "Anzahl Cacheobjekte: " + n + "\n\n";
@@ -144,36 +139,36 @@ public class GuiTest extends javax.swing.JFrame {
 
 			String spaceUI = "                  ";
 			String userinfo = "";
-			for (int ui = 0; ui < Main.m.get(keys[i]).getUserInfo().length; ui++) {
-				userinfo = userinfo + Main.m.get(keys[i]).getUserInfo()[ui]
+			for (int ui = 0; ui < MainClass.m.get(keys[i]).getUserInfo().length; ui++) {
+				userinfo = userinfo + MainClass.m.get(keys[i]).getUserInfo()[ui]
 						+ "\n" + spaceUI;
 			}
 			sCache = sCache + "Userinfo: " + userinfo + "\n";
 
 			String spaceAI = "                ";
 			String appinfo = "";
-			for (int ai = 0; ai < Main.m.get(keys[i]).getAppInfo().length; ai++) {
-				appinfo = appinfo + Main.m.get(keys[i]).getAppInfo()[ai] + "\n"
+			for (int ai = 0; ai < MainClass.m.get(keys[i]).getAppInfo().length; ai++) {
+				appinfo = appinfo + MainClass.m.get(keys[i]).getAppInfo()[ai] + "\n"
 						+ spaceAI;
 			}
 			sCache = sCache + "Appinfo: " + appinfo + "\n";
 
-			sCache = sCache + "Rolle: " + Main.m.get(keys[i]).getRole()
+			sCache = sCache + "Rolle: " + MainClass.m.get(keys[i]).getRole()
 					+ "\n\n";
 
 			sCache = sCache + "Recht: "
-					+ Main.m.get(keys[i]).getPermissions()[0] + "\n\n";
+					+ MainClass.m.get(keys[i]).getPermissions()[0] + "\n\n";
 
 			String spaceRE = "                         ";
 			String resources = "";
-			for (int re = 0; re < Main.m.get(keys[i]).getResources().length; re++) {
-				resources = resources + Main.m.get(keys[i]).getResources()[re]
+			for (int re = 0; re < MainClass.m.get(keys[i]).getResources().length; re++) {
+				resources = resources + MainClass.m.get(keys[i]).getResources()[re]
 						+ "\n" + spaceRE;
 			}
 			sCache = sCache + "Ressourcen: " + resources + "\n";
 
 			sCache = sCache + "Timestamp: "
-					+ Main.m.get(keys[i]).getTimeStamp() + "\n\n";
+					+ MainClass.m.get(keys[i]).getTimeStamp() + "\n\n";
 
 		}
 		JTextArea textBox = new JTextArea(sCache);
@@ -204,12 +199,12 @@ public class GuiTest extends javax.swing.JFrame {
 	public static void addResource(String appID) {
 		switch (appID) {
 		case "1":
-			Main.EditCache("1", GuiApp1.getTfUserName().getText());
+			MainClass.addOneResource("1", DemoApp1.getTfUserName().getText());
 			JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!",
 					"Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case "2":
-			Main.EditCache("2", GuiApp2.getTfUserName().getText());
+			MainClass.addOneResource("2", DemoApp2.getTfUserName().getText());
 			JOptionPane.showMessageDialog(null, "Ressource wurde hinzugefügt!",
 					"Neue Ressource", JOptionPane.INFORMATION_MESSAGE);
 			break;

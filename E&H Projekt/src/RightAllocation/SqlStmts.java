@@ -1,26 +1,26 @@
-/*
- * @author Pascal, Simon, Anika
- * @version 2.03
+/**
+ * @author Pascal Grunau, Simon Riedinger, Sarah Weinbecker, Anika Rist, Sebastian Abb
+ * @version 1.0
  */
 
 package RightAllocation;
 
-/*
- *  Generates SQL statements according to some parameter.
+/**
+ *  Generates SQL statements according to some parameters.
  */
 public class SqlStmts {
 
 	/**
-	 * Generates the SQL statement to get specific columns from the View table.
+	 * Generates the SQL statement to get specific columns from the view table.
 	 * 
 	 * @param userID
 	 *            The userID of an specific user.
 	 * @param appID
 	 *            The appID of the specific application.
 	 * @param parameter
-	 *            The columns which should be selected. Sting is comma
+	 *            The columns which should be selected. String is comma
 	 *            separated.
-	 * @return Returns the Statement for reading the View table.
+	 * @return Returns the Statement for reading the view table.
 	 */
 	static String generateSelectFromViewSqlStmt(String appID, String userID,
 			String parameter) {
@@ -34,14 +34,14 @@ public class SqlStmts {
 	}
 
 	/**
-	 * Generates the SQL statement to get validate the password for a specific
+	 * Generates the SQL statement to validate the password for a specific
 	 * user.
 	 * 
 	 * @param userID
 	 *            The userID of an specific user.
 	 * @param password
 	 *            The password for the user.
-	 * @return Returns the SQL Statement for checking the Password
+	 * @return Returns the SQL Statement for checking the password
 	 */
 	static String generateValidatePasswordSqlStmt(String userID, String password) {
 		String sql = "SELECT User_ID, Password" + " FROM Users"
