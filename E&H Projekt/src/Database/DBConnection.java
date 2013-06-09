@@ -127,6 +127,13 @@ public class DBConnection {
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
+	
+	/**
+	 * Initial connect to avoid a delay at the first regular connection to the DB.
+	 */
+	public static void firstInit() {
+		connect();	
+	}
 
 	/**
 	 * Checks existence of the DB.
@@ -153,4 +160,5 @@ public class DBConnection {
 	public static void setPath(String p) {
 		path = p;
 	}
+
 }

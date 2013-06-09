@@ -16,8 +16,8 @@ import javax.swing.WindowConstants;
  */
 @SuppressWarnings("serial")
 public class DemoChoose extends javax.swing.JFrame {
-	private JButton jButtonDemo1;
-	private JButton jButtonDemo2;
+	private static JButton jButtonDemo1;
+	private static JButton jButtonDemo2;
 
 	/**
 	 * Constructor initializes the gui.
@@ -68,6 +68,23 @@ public class DemoChoose extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Gets the button-object from the demoapp1 button.
+	 * 
+	 * @return Returns the button.
+	 */
+	public static JButton getBtnDemo1(){
+		return jButtonDemo1;
+	}
+	
+	/**
+	 * 
+	 * @return Returns the button.
+	 */
+	public static JButton getBtnDemo2(){
+		return jButtonDemo2;
 	}
 
 }

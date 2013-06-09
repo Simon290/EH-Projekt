@@ -23,6 +23,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import DemoChoose.DemoChoose;
+import DemoChoose.DemoChooseFunctions;
 import Test.GuiTest;
 
 /**
@@ -75,6 +77,8 @@ public class DemoApp2 extends javax.swing.JFrame {
 			this.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {
 					Actions.btnLogout();
+					DemoChoose.getBtnDemo2().setEnabled(true);
+					DemoChooseFunctions.demo2 = false;
 				}
 			});
 			getContentPane().setLayout(null);

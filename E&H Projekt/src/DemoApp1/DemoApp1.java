@@ -20,6 +20,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import DemoChoose.DemoChoose;
+import DemoChoose.DemoChooseFunctions;
 import Test.GuiTest;
 
 /**
@@ -72,6 +74,8 @@ public class DemoApp1 extends javax.swing.JFrame {
 			this.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {
 					Actions.btnLogout();
+					DemoChoose.getBtnDemo1().setEnabled(true);
+					DemoChooseFunctions.demo1 = false;
 				}
 			});
 			getContentPane().setLayout(null);
